@@ -26,7 +26,7 @@
     <li>🔐 <strong>User Authentication</strong>: Secure login and registration using JWT.</li>
     <li>🔒 <strong>Role-Based Access Control</strong>: Different access levels for admins, managers, and employees.</li>
     <li>📁 <strong>File Uploads</strong>: Efficient file management with the ability to upload and attach files to posts.</li>
-    <li>📧 <strong>Email Notifications</strong>: Automated email notifications for important events and updates.</li>
+    <li>📧 <strong>comment and like posts</strong>: Notifications posted by department heads.</li>
     <li>📱 <strong>Responsive Design</strong>: Accessible on both desktop and mobile devices.</li>
     <li>🕒 <strong>Real-Time Updates</strong>: Live updates for critical office information.</li>
   </ul>
@@ -71,12 +71,6 @@ npm install</code></pre>
     </li>
     <li>
       <p>Create a <code>.env</code> file in the <code>backend</code> directory and add your environment variables</p>
-      <pre><code>PORT=5000
-MONGO_URI=your_mongodb_uri
-JWT_SECRET=your_jwt_secret
-EMAIL_SERVICE=your_email_service
-EMAIL_USER=your_email_user
-EMAIL_PASS=your_email_pass</code></pre>
     </li>
     <li>
       <p>Run the backend server</p>
@@ -99,7 +93,7 @@ EMAIL_PASS=your_email_pass</code></pre>
  
 
   <h2 id="contact">📞 Contact</h2>
-  <p>Your Name - <a href="https://twitter.com/weletesadok">@weletesadok</a> - your_email@example.com</p>
-  <p>Project Link: <a href="https://github.com/weletesadok/smart_office">https://github.com/weletesadok/smart_office</a></p>
+  <p>Ayele Masresha - <a href="https://ayelemasresha.netlify.app">weletesadok</a></p>
+ 
 </body>
 </html>
