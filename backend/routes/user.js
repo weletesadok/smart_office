@@ -10,10 +10,12 @@ const {
   getAllUsers,
 } = require("./../controllers/user");
 
-router.post("/", uploadFiles, createUser);
-router.get("/:userId", getUserById);
-router.put("/:userId", uploadFiles, updateUser);
-router.delete("/:userId", deleteUser);
-router.get("/", getAllUsers);
+router.route("/").post(uploadFiles, createUser).get(getAllUsers);
+
+router
+  .route("/:userId")
+  .get(getUserById)
+  .put(uploadFiles, updateUser)
+  .delete(deleteUser);
 
 module.exports = router;

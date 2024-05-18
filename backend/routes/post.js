@@ -9,10 +9,12 @@ const {
   deletePost,
 } = require("./../controllers/post");
 
-router.post("/", uploadFiles, createPost);
-router.put("/:postId", uploadFiles, updatePost);
-router.get("/:postId", getPostById);
-router.get("/", getAllPosts);
-router.delete("/:postId", deletePost);
+router.route("/").post(uploadFiles, createPost).get(getAllPosts);
+
+router
+  .route("/:postId")
+  .put(uploadFiles, updatePost)
+  .get(getPostById)
+  .delete(deletePost);
 
 module.exports = router;
