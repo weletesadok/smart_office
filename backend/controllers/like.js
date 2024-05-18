@@ -57,7 +57,7 @@ const unlikePost = async (req, res) => {
       return res.status(400).json({ message: "Like not found" });
     }
 
-    await existingLike.delete();
+    await Like.findByIdAndDelete(existingLike._id);
 
     res.status(200).json({ message: "Post unliked successfully" });
   } catch (error) {
