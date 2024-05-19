@@ -62,7 +62,7 @@
   <ol>
     <li>
       <p>Clone the repository</p>
-      <pre><code>git clone https://github.com/yourusername/smart_office.git</code></pre>
+      <pre><code>git clone https://github.com/weletesadok/smart_office.git</code></pre>
     </li>
     <li>
       <p>Install NPM packages</p>
