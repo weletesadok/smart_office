@@ -1,68 +1,36 @@
-import React, { useState, useEffect } from "react";
-import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-
-const Hero = () => {
-  const images = ["https://images.unsplash.com/flagged/photo-1572644973628-e9be84915d59?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1572888195250-3037a59d3578?q=80&w=1500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1564101183558-eacfd7e02d4f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  ];
-  const texts = [
-  "https://images.unsplash.com/flagged/photo-1572644973628-e9be84915d59?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1572888195250-3037a59d3578?q=80&w=1500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1564101183558-eacfd7e02d4f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  ];
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [images]);
-
-  const handleNext = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const handlePrev = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-
+export default () => {
   return (
-    <div
-      style={{
-        backgroundImage: `url(${images[currentImageIndex]})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white bg-opacity-50 p-8 rounded-lg">
-        <p>{texts[currentImageIndex]}</p>
-        <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
-          Read More
-        </button>
+    <div className="relative flex flex-col items-center mx-auto lg:flex-row-reverse lg:max-w-5xl lg:mt-12 xl:max-w-6xl">
+      <div className="w-full h-64 lg:w-1/2 lg:h-auto">
+        <img
+          className="h-full w-full object-cover"
+          src="https://picsum.photos/id/1018/2000"
+          alt="Winding mountain road"
+        />
       </div>
-      <button
-        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-900"
-        onClick={handlePrev}
-      >
-        <IoIosArrowBack size={24} />
-      </button>
-      <button
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-900"
-        onClick={handleNext}
-      >
-        <IoIosArrowForward size={24} />
-      </button>
+
+      <div className="max-w-lg bg-white md:max-w-2xl md:z-10 md:shadow-lg md:absolute md:top-0 md:mt-48 lg:w-3/5 lg:left-0 lg:mt-20 lg:ml-20 xl:mt-24 xl:ml-12">
+        <div className="flex flex-col p-12 md:px-16">
+          <h2 className="text-2xl font-medium uppercase text-green-800 lg:text-4xl">
+            Winding Mountain Road
+          </h2>
+          <p className="mt-4">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </p>
+
+          <div className="mt-8">
+            <a
+              href="#"
+              className="inline-block w-full text-center text-lg font-medium text-gray-100 bg-green-600 border-solid border-2 border-gray-600 py-4 px-10 hover:bg-green-800 hover:shadow-md md:w-48"
+            >
+              Read More
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
-
-export default Hero;
