@@ -1,111 +1,99 @@
-export default () => {
+import React from "react";
+import { Link } from "react-router-dom";
+
+const NewsSection = () => {
+  const newses = [
+    {
+      title: "Breaking News: Market Hits Record Highs",
+      content:
+        "Today, the stock market reached new record highs as investors remain optimistic about the economic recovery. The S&P 500, Dow Jones, and Nasdaq all saw significant gains, with tech and healthcare stocks leading the charge. Analysts attribute the surge to positive economic data and ongoing stimulus efforts. Many believe this trend will continue as more businesses reopen and consumer spending increases. However, some caution that the market could experience volatility as uncertainties remain. Stay tuned for more updates on this developing story.",
+    },
+    {
+      title: "Local Hero Saves Family from House Fire",
+      content:
+        "In a remarkable act of bravery, a local man rescued a family of four from a house fire late last night. Witnesses say the fire broke out around midnight, quickly engulfing the two-story home. The hero, who lives nearby, rushed into the burning building without hesitation, pulling the family to safety one by one. Firefighters arrived shortly after and managed to extinguish the blaze. The family is currently recovering in the hospital, and all are expected to make a full recovery. The community has praised the hero for his quick thinking and selflessness.",
+    },
+    {
+      title: "New Tech Innovations Unveiled at Annual Conference",
+      content:
+        "At the annual Tech Innovators Conference, several groundbreaking technologies were unveiled that promise to revolutionize various industries. Among the highlights were a new AI-powered medical diagnostic tool, a sustainable energy solution using advanced solar cells, and a cutting-edge virtual reality platform for education. Industry leaders and tech enthusiasts alike were impressed by the potential of these innovations to solve real-world problems and improve lives. The conference continues through the weekend, featuring more presentations and discussions on the future of technology.",
+    },
+    {
+      title: "City to Implement New Green Initiatives",
+      content:
+        "In an effort to combat climate change and promote sustainability, the city council has announced a series of new green initiatives. These include expanding public transportation options, increasing green spaces, and implementing stricter emissions regulations for local businesses. The council also plans to invest in renewable energy projects and promote energy efficiency in homes and buildings. These initiatives are expected to significantly reduce the city's carbon footprint and improve air quality. Residents are encouraged to participate in community workshops to learn more about how they can contribute to a greener future.",
+    },
+    {
+      title: "Sports Update: Championship Game Results",
+      content:
+        "In an exciting conclusion to the championship series, the hometown team emerged victorious, securing the title with a last-minute goal. The game was a nail-biter, with both teams playing at their best and the score remaining tight throughout. Fans were on the edge of their seats as the clock wound down, erupting in cheers when the winning goal was scored in the final seconds. The team's coach praised the players for their hard work and determination, and celebrations are planned throughout the city to honor their achievement. Stay tuned for more details on the victory parade and festivities.",
+    },
+  ];
+
+  const trimContent = (content, maxLength = 150) => {
+    if (content.length > maxLength) {
+      return content.substring(0, maxLength) + "...";
+    }
+    return content;
+  };
+
   return (
-    <div className="h-screen w-full dark:bg-gray-900">
-      <div className="w-full mx-auto py-10 px-4 md:px-8">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white">
-            Messages from department heads
-          </h2>
-        </div>
-        <div className="grid max-w-2xl grid-cols-1 gap-8 mx-auto mt-8 auto-rows-fr lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          <article className="relative flex flex-col justify-end px-4 pt-40 pb-4 overflow-hidden bg-gray-900 md:pt-28 isolate rounded-xl dark:shadow dark:shadow-gray-400/50">
-            <img
-              src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxhaXxlbnwwfDB8fHwxNzEyNzUzMTQ4fDA&ixlib=rb-4.0.3&q=80&w=1080"
-              alt=""
-              className="absolute inset-0 object-cover w-full h-full -z-10"
-            />
-            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
-            <div className="absolute inset-0 -z-10 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
-
-            <a
-              className="text-lg font-semibold leading-6 text-white hover:text-teal-100"
-              href=""
-            >
-              he Future of Artificial Intelligence: Trends and Challenges
-            </a>
-          </article>
-          <article className="relative flex flex-col justify-end px-4 pt-40 pb-4 overflow-hidden bg-gray-900 md:pt-28 isolate rounded-xl dark:shadow dark:shadow-gray-400/50">
-            <img
-              src="https://images.unsplash.com/photo-1639322537228-f710d846310a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxibG9jayUyMGNoYWlufGVufDB8MHx8fDE3MTI3NTMxNjd8MA&ixlib=rb-4.0.3&q=80&w=1080"
-              alt=""
-              className="absolute inset-0 object-cover w-full h-full -z-10"
-            />
-            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
-            <div className="absolute inset-0 -z-10 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
-
-            <a
-              className="text-lg font-semibold leading-6 text-white hover:text-teal-100"
-              href=""
-            >
-              he Rise of Blockchain Technology: A Comprehensive Guide
-            </a>
-          </article>
-          <article className="relative flex flex-col justify-end px-4 pt-40 pb-4 overflow-hidden bg-gray-900 md:pt-28 isolate rounded-xl dark:shadow dark:shadow-gray-400/50">
-            <img
-              src="https://images.unsplash.com/photo-1666112835156-c65bb806ac73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxNXx8cXVhbnR1bSUyMGNvbXB1dGluZ3xlbnwwfDB8fHwxNzEyNzUzMTk2fDA&ixlib=rb-4.0.3&q=80&w=1080"
-              alt=""
-              className="absolute inset-0 object-cover w-full h-full -z-10"
-            />
-            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
-            <div className="absolute inset-0 -z-10 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
-
-            <a
-              className="text-lg font-semibold leading-6 text-white hover:text-teal-100"
-              href=""
-            >
-              How Quantum Computing Will Revolutionize Data Security
-            </a>
-          </article>
-          <article className="relative flex flex-col justify-end px-4 pt-40 pb-4 overflow-hidden bg-gray-900 md:pt-28 isolate rounded-xl dark:shadow dark:shadow-gray-400/50">
-            <img
-              src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxhaXxlbnwwfDB8fHwxNzEyNzUzMTQ4fDA&ixlib=rb-4.0.3&q=80&w=1080"
-              alt=""
-              className="absolute inset-0 object-cover w-full h-full -z-10"
-            />
-            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
-            <div className="absolute inset-0 -z-10 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
-
-            <a
-              className="text-lg font-semibold leading-6 text-white hover:text-teal-100"
-              href=""
-            >
-              he Future of Artificial Intelligence: Trends and Challenges
-            </a>
-          </article>
-          <article className="relative flex flex-col justify-end px-4 pt-40 pb-4 overflow-hidden bg-gray-900 md:pt-28 isolate rounded-xl dark:shadow dark:shadow-gray-400/50">
-            <img
-              src="https://images.unsplash.com/photo-1639322537228-f710d846310a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxibG9jayUyMGNoYWlufGVufDB8MHx8fDE3MTI3NTMxNjd8MA&ixlib=rb-4.0.3&q=80&w=1080"
-              alt=""
-              className="absolute inset-0 object-cover w-full h-full -z-10"
-            />
-            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
-            <div className="absolute inset-0 -z-10 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
-
-            <a
-              className="text-lg font-semibold leading-6 text-white hover:text-teal-100"
-              href=""
-            >
-              he Rise of Blockchain Technology: A Comprehensive Guide
-            </a>
-          </article>
-          <article className="relative flex flex-col justify-end px-4 pt-40 pb-4 overflow-hidden bg-gray-900 md:pt-28 isolate rounded-xl dark:shadow dark:shadow-gray-400/50">
-            <img
-              src="https://images.unsplash.com/photo-1666112835156-c65bb806ac73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxNXx8cXVhbnR1bSUyMGNvbXB1dGluZ3xlbnwwfDB8fHwxNzEyNzUzMTk2fDA&ixlib=rb-4.0.3&q=80&w=1080"
-              alt=""
-              className="absolute inset-0 object-cover w-full h-full -z-10"
-            />
-            <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
-            <div className="absolute inset-0 -z-10 rounded-xl ring-1 ring-inset ring-gray-900/10"></div>
-
-            <a
-              className="text-lg font-semibold leading-6 text-white hover:text-teal-100"
-              href=""
-            >
-              How Quantum Computing Will Revolutionize Data Security
-            </a>
-          </article>
-        </div>
+    <section className="flex flex-col justify-center max-w-6xl min-h-screen px-4 py-10 mx-auto sm:px-6">
+      <div className="flex flex-wrap items-center justify-between mb-8">
+        <h2 className="mr-10 text-4xl font-bold leading-none md:text-5xl">
+          News
+        </h2>
+        <Link
+          to="/insights"
+          className="block pb-1 mt-2 text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600"
+        >
+          Go to news page
+        </Link>
       </div>
-    </div>
+      <div className="flex flex-wrap -mx-4">
+        {newses.map((news, index) => (
+          <div
+            key={index}
+            className="w-full max-w-full mb-8 sm:w-1/2 px-4 lg:w-1/3 flex flex-col"
+          >
+            <img
+              src="https://source.unsplash.com/random/400x300"
+              alt="Card img"
+              className="object-cover object-center w-full h-48"
+            />
+            <div className="flex flex-grow">
+              <div className="triangle"></div>
+              <div className="flex flex-col justify-between px-4 py-6 bg-white border border-gray-400 text">
+                <div>
+                  <Link
+                    to={`/news/${index}`}
+                    className="inline-block mb-4 text-xs font-bold capitalize border-b-2 border-blue-600 hover:text-blue-600"
+                  >
+                    {news.title}
+                  </Link>
+                  <Link
+                    to={`/news/${index}`}
+                    className="block mb-4 text-2xl font-black leading-tight hover:underline hover:text-blue-600"
+                  >
+                    {news.title}
+                  </Link>
+                  <p className="mb-4">{trimContent(news.content)}</p>
+                </div>
+                <div>
+                  <Link
+                    to={`/news/${index}`}
+                    className="inline-block pb-1 mt-2 text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600"
+                  >
+                    Read More
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 };
+
+export default NewsSection;

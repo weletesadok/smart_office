@@ -1,36 +1,53 @@
-export default () => {
+import React, { useEffect, useState } from "react";
+
+const ContactSection = () => {
+  const images = [
+    "https://source.unsplash.com/1600x900/?tiger",
+    "https://source.unsplash.com/1600x900/?lion",
+    "https://source.unsplash.com/1600x900/?orthodox",
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    document.title = "Welcome to Ministry of Tourism Intranet";
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [images]);
+
   return (
-    <div className="relative flex flex-col items-center mx-auto lg:flex-row-reverse lg:max-w-5xl lg:mt-12 xl:max-w-6xl">
-      <div className="w-full h-64 lg:w-1/2 lg:h-auto">
+    <div className="relative bg-gradient-to-r from-purple-600 to-blue-600 h-screen text-white overflow-hidden">
+      <div className="absolute inset-0">
         <img
-          className="h-full w-full object-cover"
-          src="https://picsum.photos/id/1018/2000"
-          alt="Winding mountain road"
+          src={images[currentImageIndex]}
+          alt="Background Image"
+          className="object-cover object-center w-full h-full"
         />
+        <div className="absolute inset-0 bg-black opacity-50"></div>
       </div>
 
-      <div className="max-w-lg bg-white md:max-w-2xl md:z-10 md:shadow-lg md:absolute md:top-0 md:mt-48 lg:w-3/5 lg:left-0 lg:mt-20 lg:ml-20 xl:mt-24 xl:ml-12">
-        <div className="flex flex-col p-12 md:px-16">
-          <h2 className="text-2xl font-medium uppercase text-green-800 lg:text-4xl">
-            Winding Mountain Road
-          </h2>
-          <p className="mt-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
-
-          <div className="mt-8">
-            <a
-              href="#"
-              className="inline-block w-full text-center text-lg font-medium text-gray-100 bg-green-600 border-solid border-2 border-gray-600 py-4 px-10 hover:bg-green-800 hover:shadow-md md:w-48"
-            >
-              Read More
-            </a>
-          </div>
-        </div>
+      <div className="relative z-10 flex flex-col justify-center items-center h-full text-center">
+        <h1 className="text-5xl font-bold leading-tight mb-4">
+          Welcome to Ministry of Tourism Intranet
+        </h1>
+        <p className="text-lg text-gray-300 mb-8">
+          Discover amazing features and services that await you.
+        </p>
+        <a
+          href="/login"
+          className="bg-yellow-400 text-gray-900 hover:bg-yellow-300 py-2 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg"
+        >
+          Get Started
+        </a>
       </div>
     </div>
   );
 };
+
+export default ContactSection;
