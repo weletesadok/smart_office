@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
+import AnotherLogo from "../assets/logo2.svg";
 
 const DropdownMenu = ({ options }) => {
   return (
@@ -43,7 +44,7 @@ const DropdownMenu = ({ options }) => {
   );
 };
 
-const NavBar = ({ options }) => {
+const NavBar = ({ options, bgColor, fontFamily, fontWeight, fontSize }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
 
@@ -60,10 +61,23 @@ const NavBar = ({ options }) => {
   };
 
   return (
-    <nav className="flex flex-wrap items-center justify-between bg-black text-white">
-      <Link to="/">
-        <img src={Logo} className="w-16" />
-      </Link>
+    <nav
+      className="flex flex-wrap items-center justify-between text-white"
+      style={{ backgroundColor: bgColor, fontFamily: fontFamily }}
+    >
+      <div className="flex items-center flex-grow">
+        <Link to="/">
+          <img src={Logo} className="w-16 mr-4" />
+        </Link>
+        <form className="hidden md:flex flex-grow items-center justify-between">
+          <input
+            type="text"
+            placeholder="Search"
+            className="px-4 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-blue-500 w-full"
+            style={{ fontSize: fontSize }}
+          />
+        </form>
+      </div>
       <div className="flex md:hidden">
         <button id="hamburger" onClick={toggleMenu}>
           <img
@@ -135,6 +149,9 @@ const NavBar = ({ options }) => {
           </div>
         ))}
       </div>
+      <Link to="/" className="hidden md:block">
+        <img src={AnotherLogo} className="w-12  ml-4" />
+      </Link>
     </nav>
   );
 };
@@ -155,9 +172,20 @@ const App = () => {
     },
   ];
 
+  const bgColor = "#000";
+  const fontFamily = "Arial, sans-serif";
+  const fontWeight = "normal";
+  const fontSize = "16px";
+
   return (
     <div className="p-4 bg-black">
-      <NavBar options={options} />
+      <NavBar
+        options={options}
+        bgColor={bgColor}
+        fontFamily={fontFamily}
+        fontWeight={fontWeight}
+        fontSize={fontSize}
+      />
     </div>
   );
 };
