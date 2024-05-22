@@ -11,6 +11,7 @@ import Login from "./Login";
 import Register from "./Register";
 import Profile from "./Profile";
 import NewsForm from "./NewsForm";
+import NotFoundPage from "./NotFound";
 
 export default () => {
   return (
@@ -26,6 +27,7 @@ export default () => {
       <Register />
       <Profile /> */}
       <NewsForm />
+      <NotFoundPage />
       <Footer />
     </>
   );

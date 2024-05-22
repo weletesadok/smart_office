@@ -44,7 +44,14 @@ const DropdownMenu = ({ options }) => {
   );
 };
 
-const NavBar = ({ options, bgColor, fontFamily, fontWeight, fontSize }) => {
+const NavBar = ({
+  options,
+  bgColor,
+  fontFamily,
+  fontWeight,
+  fontSize,
+  textColor,
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
 
@@ -62,8 +69,12 @@ const NavBar = ({ options, bgColor, fontFamily, fontWeight, fontSize }) => {
 
   return (
     <nav
-      className="flex flex-wrap items-center justify-between text-white"
-      style={{ backgroundColor: bgColor, fontFamily: fontFamily }}
+      className="flex flex-wrap items-center justify-center text-white w-full"
+      style={{
+        backgroundColor: bgColor,
+        fontFamily: fontFamily,
+        color: textColor,
+      }}
     >
       <div className="flex items-center flex-grow">
         <Link to="/">
@@ -73,7 +84,7 @@ const NavBar = ({ options, bgColor, fontFamily, fontWeight, fontSize }) => {
           <input
             type="text"
             placeholder="Search"
-            className="px-4 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-blue-500 w-full"
+            className="px-4 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-blue-500 text-black  min-w-[60%] mx-auto"
             style={{ fontSize: fontSize }}
           />
         </form>
@@ -120,11 +131,7 @@ const NavBar = ({ options, bgColor, fontFamily, fontWeight, fontSize }) => {
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
+                    <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                   </svg>
                 </>
               )}
@@ -176,17 +183,17 @@ const App = () => {
   const fontFamily = "Arial, sans-serif";
   const fontWeight = "normal";
   const fontSize = "16px";
+  const textColor = "#fff"; // Adding textColor prop
 
   return (
-    <div className="p-4 bg-black">
-      <NavBar
-        options={options}
-        bgColor={bgColor}
-        fontFamily={fontFamily}
-        fontWeight={fontWeight}
-        fontSize={fontSize}
-      />
-    </div>
+    <NavBar
+      options={options}
+      bgColor={bgColor}
+      fontFamily={fontFamily}
+      fontWeight={fontWeight}
+      fontSize={fontSize}
+      textColor={textColor} // Passing textColor prop
+    />
   );
 };
 
