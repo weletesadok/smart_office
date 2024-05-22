@@ -19,15 +19,15 @@ export default () => {
       <Navbar />
       {/* <Skeleton />
       <UsersTable /> */}
-      <Hero />
       <News />
       <Departments />
       <ContactUs />
       {/* <Login />
-      <Register />
       <Profile /> */}
+      <Register />
       <NewsForm />
       <NotFoundPage />
+      <Hero />
       <Footer />
     </>
   );

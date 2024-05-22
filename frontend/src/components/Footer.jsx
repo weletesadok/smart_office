@@ -25,10 +25,10 @@ const Footer = () => {
   return (
     <footer style={{ backgroundColor }} className="bg-black">
       <div className="container mx-auto p-0 md:p-8 xl:px-0">
-        <div className="mx-auto max-w-7xl px-6 pb-10 pt-16">
+        <div className="mx-auto max-w-7xl px-6 pb-10 pt-4">
           <div className="xl:grid xl:grid-cols-3 xl:gap-8">
             <div className="space-y-4">
-              <div>
+              {/* <div>
                 <a href="/">
                   <div className="flex items-center space-x-2 text-2xl font-medium">
                     <span>
@@ -36,7 +36,7 @@ const Footer = () => {
                     </span>
                   </div>
                 </a>
-              </div>
+              </div> */}
               <div className="max-w-md pr-16 text-md text-gray-200">
                 Follow us on{" "}
               </div>
@@ -142,9 +142,9 @@ const Footer = () => {
           </div>
           <div className="mt-4 border-t border-gray-400/30">
             <div className="text-md text-center text-white pt-4">
-              Copyright © 2024. Crafted with
-              <span className="text-yellow-500"> ♥ </span> By Ministry Of
-              Tourism Software Team
+              Copyright © 2024
+              <span className="text-yellow-500">  </span> Ministry Of
+              Tourism.
             </div>
           </div>
         </div>
