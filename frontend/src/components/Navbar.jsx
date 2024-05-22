@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
 import AnotherLogo from "../assets/logo2.svg";
+import DarkModeToggle from "./DarkMode";
 
 const DropdownMenu = ({ options }) => {
   return (
@@ -69,22 +70,24 @@ const NavBar = ({
 
   return (
     <nav
-      className="flex flex-wrap items-center justify-center text-white w-full"
+      className="flex flex-wrap items-center justify-evenly text-white sticky z-50 top-0 left-0 bg-secondary p-4 opacity-[0.8] "
       style={{
-        backgroundColor: bgColor,
+        // backgroundColor: bgColor,
         fontFamily: fontFamily,
         color: textColor,
       }}
     >
-      <div className="flex items-center flex-grow">
+      <div className="flex items-center">
         <Link to="/">
           <img src={Logo} className="w-16 mr-4" />
         </Link>
-        <form className="hidden md:flex flex-grow items-center justify-between">
+      </div>
+      <div>
+        <form className="hidden md:flex flex-grow items-center justify-between min-w-[70%]">
           <input
             type="text"
             placeholder="Search"
-            className="px-4 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-blue-500 text-black  min-w-[60%] mx-auto"
+            className="px-4 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-blue-500 text-black flex-1 mx-auto"
             style={{ fontSize: fontSize }}
           />
         </form>
@@ -124,7 +127,6 @@ const NavBar = ({
               {option.options && (
                 <>
                   {option.name}
-
                   <svg
                     className="ml-1 h-4 w-4"
                     fill="currentColor"
@@ -138,7 +140,7 @@ const NavBar = ({
             </button>
             {option.options && (
               <div
-                className={`absolute left-0 bg-gray-700 text-white dark:text-white dark:bg-gray-600 shadow-lg z-10 ${
+                className={`absolute left-0 bg-secondary text-white dark:text-white dark:bg-gray-600 shadow-lg z-10 ${
                   activeDropdown === index ? "block" : "hidden"
                 } md:group-hover:block`}
               >
@@ -156,8 +158,9 @@ const NavBar = ({
           </div>
         ))}
       </div>
+      <DarkModeToggle />
       <Link to="/" className="hidden md:block">
-        <img src={AnotherLogo} className="w-12  ml-4" />
+        <img src={AnotherLogo} className="w-20 rounded-full" />
       </Link>
     </nav>
   );
@@ -173,6 +176,7 @@ const App = () => {
       options: ["Employees", "Departments", "Posts"],
     },
     { name: "Head Dash", options: ["Create Posts"] },
+    { name: "About", options: ["About Minsters", "About MOT"] },
     {
       name: "Profile",
       options: ["Log In", "Log Out", "Sign Up", "Edit"],
@@ -180,7 +184,7 @@ const App = () => {
   ];
 
   const bgColor = "#000";
-  const fontFamily = "Arial, sans-serif";
+  const fontFamily = "inherit";
   const fontWeight = "normal";
   const fontSize = "16px";
   const textColor = "#fff"; // Adding textColor prop

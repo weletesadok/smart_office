@@ -40,12 +40,12 @@ const NewsSection = () => {
   return (
     <section className="flex flex-col justify-center max-w-6xl min-h-screen px-4 py-10 mx-auto sm:px-6">
       <div className="flex flex-wrap items-center justify-between mb-8">
-        <h2 className="mr-10 text-4xl font-bold leading-none md:text-5xl">
+        <h2 className="mr-10 text-4xl font-bold leading-none md:text-5xl dark:text-white">
           News
         </h2>
         <Link
           to="/insights"
-          className="block pb-1 mt-2 text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600"
+          className="block pb-1 mt-2 text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600 dark:text-blue-400 dark:hover:border-blue-400"
         >
           Go to news page
         </Link>
@@ -63,17 +63,11 @@ const NewsSection = () => {
             />
             <div className="flex flex-grow">
               <div className="triangle"></div>
-              <div className="flex flex-col justify-between px-4 py-6 bg-white border border-gray-400 text">
+              <div className="flex flex-col justify-between px-4 py-6 bg-white border border-gray-400 dark:bg-gray-800 dark:border-gray-700 text dark:text-gray-300">
                 <div>
                   <Link
                     to={`/news/${index}`}
-                    className="inline-block mb-4 text-xs font-bold capitalize border-b-2 border-blue-600 hover:text-blue-600"
-                  >
-                    {news.title}
-                  </Link>
-                  <Link
-                    to={`/news/${index}`}
-                    className="block mb-4 text-2xl font-black leading-tight hover:underline hover:text-blue-600"
+                    className="block mb-4 text-2xl font-black leading-tight hover:underline hover:text-blue-600 dark:hover:text-blue-400"
                   >
                     {news.title}
                   </Link>
@@ -82,7 +76,7 @@ const NewsSection = () => {
                 <div>
                   <Link
                     to={`/news/${index}`}
-                    className="inline-block pb-1 mt-2 text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600"
+                    className="inline-block pb-1 mt-2 text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600 dark:text-blue-400 dark:hover:border-blue-400"
                   >
                     Read More
                   </Link>

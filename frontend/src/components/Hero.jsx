@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 
 const ContactSection = () => {
   const images = [
-    "https://source.unsplash.com/1600x900/?tiger",
-    "https://source.unsplash.com/1600x900/?lion",
-    "https://source.unsplash.com/1600x900/?orthodox",
+    "https://source.unsplash.com/1600x900/?ethiopia",
+    "https://source.unsplash.com/1600x900/?lalibela",
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

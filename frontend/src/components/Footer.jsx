@@ -22,11 +22,13 @@ const Footer = () => {
     { name: "Edit Profile", link: "#edit" },
   ];
 
+  const darkMode = true; // Assume you have a way to determine dark mode
+
   return (
-    <footer style={{ backgroundColor }} className="bg-black">
+    <footer className="dark:bg-black bg-primary">
       <div className="container mx-auto p-0 md:p-8 xl:px-0">
         <div className="mx-auto max-w-7xl px-6 pb-10 pt-4">
-          <div className="xl:grid xl:grid-cols-3 xl:gap-8">
+        <div className="xl:grid xl:grid-cols-3 xl:gap-8">
             <div className="space-y-4">
               {/* <div>
                 <a href="/">
@@ -154,3 +156,5 @@ const Footer = () => {
 };
 
 export default Footer;
+
+         

@@ -12,22 +12,17 @@ import Register from "./Register";
 import Profile from "./Profile";
 import NewsForm from "./NewsForm";
 import NotFoundPage from "./NotFound";
+import PlacesToVisit from "./PlacesToVisit";
 
 export default () => {
   return (
     <>
       <Navbar />
-      {/* <Skeleton />
-      <UsersTable /> */}
+      <Hero />
       <News />
+      <PlacesToVisit />
       <Departments />
       <ContactUs />
-      {/* <Login />
-      <Profile /> */}
-      <Register />
-      <NewsForm />
-      <NotFoundPage />
-      <Hero />
       <Footer />
     </>
   );

@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --bg-4: #0d1b2a;
+  --bg-2: #000;
+  --bg-3: #405a78;
+  --bg-1: #567297;
+}
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    background: #f8f9fa;
+}
+
+.bg-primary {
+  background: var(--bg-1);
+}
+
+.bg-secondary {
+  background: var(--bg-2);
+}
+
+.bg-third {
+  background: var(--bg-3);
+}
