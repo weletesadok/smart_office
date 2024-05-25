@@ -35,7 +35,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black">
+    <div className="min-h-screen flex items-center justify-center">
       <div className="flex flex-col lg:flex-row items-center bg-white dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden w-full max-w-4xl">
         <div className="w-full lg:w-5/12 flex justify-center p-6">
           <img src={Logo} alt="Logo" className="w-full" />

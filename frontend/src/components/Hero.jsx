@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const ContactSection = () => {
+const Hero = () => {
   const images = [
     "https://source.unsplash.com/1600x900/?ethiopia",
     "https://source.unsplash.com/1600x900/?lalibela",
@@ -49,4 +49,4 @@ const ContactSection = () => {
   );
 };
 
-export default ContactSection;
+export default Hero;

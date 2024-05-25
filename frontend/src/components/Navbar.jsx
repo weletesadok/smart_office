@@ -5,11 +5,12 @@ import AnotherLogo from "../assets/logo2.svg";
 import DarkModeToggle from "./DarkMode";
 
 const DropdownMenu = ({ options }) => {
+   
   return (
     <div className="hidden md:flex items-center space-x-4">
       {options.map((option, index) => (
         <div key={index} className="relative group">
-          <button className="flex items-center px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-600 focus:outline-none dark:hover:bg-gray-500">
+          <button className="flex items-center px-3 py-2 rounded-md text-sm font-medium  hover:bg-gray-600 focus:outline-none dark:hover:bg-gray-500">
             {option.name}
             {option.options && (
               <svg
@@ -27,14 +28,14 @@ const DropdownMenu = ({ options }) => {
             )}
           </button>
           {option.options && (
-            <div className="absolute left-0 hidden group-hover:block bg-gray-800 dark:bg-gray-600 shadow-lg z-10">
+            <div className="absolute left-0 hidden group-hover:block  bg-gray-800 dark:bg-gray-600 shadow-lg z-10">
               {option.options.map((subOption, subIndex) => (
                 <Link
                   key={subIndex}
-                  to={`/${subOption.toLowerCase().replace(/\s/g, "")}`}
-                  className="block px-4 py-2 text-sm hover:bg-gray-700 dark:hover:bg-gray-500"
+                  to={subOption.path}
+                  className="block w-full px-4 py-2 text-sm hover:bg-gray-700 dark:hover:bg-gray-500"
                 >
-                  {subOption}
+                  {subOption.name}
                 </Link>
               ))}
             </div>
@@ -62,7 +63,7 @@ const NavBar = ({ options }) => {
   };
 
   return (
-    <nav className="flex flex-wrap items-center justify-evenly bg-primary dark:bg-black sticky   z-50 top-0 left-0  p-4">
+    <nav className="flex flex-wrap items-center justify-evenly bg-primary dark:bg-black sticky z-50 top-0 left-0 p-4">
       <div className="flex items-center">
         <Link to="/">
           <img src={Logo} className="w-16 mr-4" />
@@ -106,9 +107,7 @@ const NavBar = ({ options }) => {
               className="flex items-center px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-600 focus:outline-none dark:hover:bg-gray-500"
               onClick={() => toggleDropdown(index)}
             >
-              {!option.options && (
-                <Link to={`${option.name}`}>{option.name}</Link>
-              )}
+              {!option.options && <Link to={option.path}>{option.name}</Link>}
               {option.options && (
                 <>
                   {option.name}
@@ -118,24 +117,28 @@ const NavBar = ({ options }) => {
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                    <path
+                      fillRule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                 </>
               )}
             </button>
             {option.options && (
               <div
-                className={`absolute left-0  shadow-lg z-10 ${
+                className={`absolute left-0 shadow-lg z-10 ${
                   activeDropdown === index ? "block" : "hidden"
                 } md:group-hover:block`}
               >
                 {option.options.map((subOption, subIndex) => (
                   <Link
                     key={subIndex}
-                    to={`/${subOption.toLowerCase().replace(/\s/g, "")}`}
+                    to={subOption.path}
                     className="block px-4 py-2 text-sm hover:bg-gray-500 dark:hover:bg-gray-400 hover:text-white"
                   >
-                    {subOption}
+                    {subOption.name}
                   </Link>
                 ))}
               </div>
@@ -145,7 +148,7 @@ const NavBar = ({ options }) => {
       </div>
       <DarkModeToggle />
       <Link to="/" className="hidden md:block">
-        <img src={AnotherLogo} className="w-20 h-auto  rounded-full " />
+        <img src={AnotherLogo} className="w-20 h-auto rounded-full" />
       </Link>
     </nav>
   );
@@ -153,22 +156,71 @@ const NavBar = ({ options }) => {
 
 const App = () => {
   const options = [
-    { name: "Home" },
-    { name: "News" },
-    { name: "Core", options: ["Structure", "Departments", "Gallery"] },
+    { name: "Home", path: "/" },
+    { name: "News", path: "/news" },
     {
-      name: "Admin Dash",
-      options: ["Employees", "Departments", "Posts"],
+      name: "Core",
+      options: [
+        { name: "Structure", path: "/structure" },
+        { name: "Departments", path: "/departments" },
+        { name: "Places", path: "/places" },
+      ],
     },
-    { name: "Head Dash", options: ["Create Posts"] },
-    { name: "About", options: ["About Minsters", "About MOT"] },
+    {
+      name: "Head",
+      options: [
+        { name: "Structure", path: "/structure" },
+        { name: "Departments", path: "/departments" },
+        { name: "Places", path: "/places" },
+        { name: "Add News", path: "/news/new" },
+      ],
+    },
+    {
+      name: "Admin",
+      options: [
+        { name: "Add Place", path: "/places" },
+      ],
+    },
     {
       name: "Profile",
-      options: ["Log In", "Log Out", "Sign Up", "Edit"],
+      options: [
+        { name: "Login", path: "/login" },
+        { name: "Register", path: "/register" },
+        { name: "Log Out", path: "/logout" },
+        { name: "Edit Profile", path: "/profile" },
+      ],
     },
   ];
-
-  return <NavBar options={options} />;
+  const filterOptions = (options, isAdmin, isLoggedIn, isHead) => {
+    return options.filter(option => {
+      if (option.name === "Admin" && !isAdmin) return false;
+      if (option.name === "Head" && !isHead) return false;
+  
+      if (option.name === "Profile") {
+        if (option.options) {
+          option.options = option.options.filter(subOption => {
+            if (!isLoggedIn && (subOption.name === "Log Out" || subOption.name === "Edit Profile")) return false;
+            if (isLoggedIn && (subOption.name === "Login" || subOption.name === "Register")) return false;
+            return true;
+          });
+        }
+        return true;
+      }
+  
+      if (option.options) {
+        option.options = option.options.filter(subOption => {
+          if (subOption.name === "Admin" && !isAdmin) return false;
+          if (subOption.name === "Head" && !isHead) return false;
+          return true;
+        });
+      }
+      return true;
+    });
+  };
+  
+  
+  const filteredOptions = filterOptions(options, false, false, false);
+  return <NavBar options={filteredOptions} />;
 };
 
 export default App;
