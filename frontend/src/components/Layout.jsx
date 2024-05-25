@@ -16,14 +16,14 @@ import PlacesToVisit from "./PlacesToVisit";
 
 export default () => {
   return (
-    <>
+    <div className="bg-white dark:bg-gray-900 w-full overflow-visible">
       <Navbar />
       <Hero />
       <News />
       <PlacesToVisit />
-      <Departments />
+      {/* <Departments /> */}
       <ContactUs />
       <Footer />
-    </>
+    </div>
   );
 };

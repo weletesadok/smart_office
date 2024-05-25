@@ -1,8 +1,6 @@
 import React from "react";
-import Logo from "./../assets/logo.svg";
 
 const Footer = () => {
-  const backgroundColor = "linear-gradient(to left, red, black)";
   const options = [
     { name: "Home", link: "/" },
     { name: "News", link: "/" },
@@ -22,23 +20,12 @@ const Footer = () => {
     { name: "Edit Profile", link: "#edit" },
   ];
 
-  const darkMode = true; // Assume you have a way to determine dark mode
-
   return (
-    <footer className="dark:bg-black bg-primary">
+    <footer className=" bg-primary dark:bg-black">
       <div className="container mx-auto p-0 md:p-8 xl:px-0">
         <div className="mx-auto max-w-7xl px-6 pb-10 pt-4">
-        <div className="xl:grid xl:grid-cols-3 xl:gap-8">
+          <div className="xl:grid xl:grid-cols-3 xl:gap-8">
             <div className="space-y-4">
-              {/* <div>
-                <a href="/">
-                  <div className="flex items-center space-x-2 text-2xl font-medium">
-                    <span>
-                      <img src={Logo} alt="MOT Logo" className="w-[40%]" />
-                    </span>
-                  </div>
-                </a>
-              </div> */}
               <div className="max-w-md pr-16 text-md text-gray-200">
                 Follow us on{" "}
               </div>
@@ -145,8 +132,7 @@ const Footer = () => {
           <div className="mt-4 border-t border-gray-400/30">
             <div className="text-md text-center text-white pt-4">
               Copyright © 2024
-              <span className="text-yellow-500">  </span> Ministry Of
-              Tourism.
+              <span className="text-yellow-500"> </span> Ministry Of Tourism.
             </div>
           </div>
         </div>
@@ -156,5 +142,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-         

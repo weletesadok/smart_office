@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const NewsSection = () => {
@@ -38,7 +37,7 @@ const NewsSection = () => {
   };
 
   return (
-    <section className="flex flex-col justify-center max-w-6xl min-h-screen px-4 py-10 mx-auto sm:px-6">
+    <section className="flex flex-col justify-center max-w-6xl min-h-screen px-4 py-10 mx-auto sm:px-6  bg-white dark:bg-gray-900 text-black dark:text-white">
       <div className="flex flex-wrap items-center justify-between mb-8">
         <h2 className="mr-10 text-4xl font-bold leading-none md:text-5xl dark:text-white">
           News
@@ -54,7 +53,7 @@ const NewsSection = () => {
         {newses.map((news, index) => (
           <div
             key={index}
-            className="w-full max-w-full mb-8 sm:w-1/2 px-4 lg:w-1/3 flex flex-col"
+            className="w-full max-w-full mb-8 sm:w-1/2 px-4 lg:w-1/3 flex flex-col news-card"
           >
             <img
               src="https://source.unsplash.com/random/400x300"
@@ -63,7 +62,7 @@ const NewsSection = () => {
             />
             <div className="flex flex-grow">
               <div className="triangle"></div>
-              <div className="flex flex-col justify-between px-4 py-6 bg-white border border-gray-400 dark:bg-gray-800 dark:border-gray-700 text dark:text-gray-300">
+              <div className="flex flex-col justify-between px-4 py-6 bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-black dark:text-gray-300">
                 <div>
                   <Link
                     to={`/news/${index}`}

@@ -45,14 +45,7 @@ const DropdownMenu = ({ options }) => {
   );
 };
 
-const NavBar = ({
-  options,
-  bgColor,
-  fontFamily,
-  fontWeight,
-  fontSize,
-  textColor,
-}) => {
+const NavBar = ({ options }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
 
@@ -69,14 +62,7 @@ const NavBar = ({
   };
 
   return (
-    <nav
-      className="flex flex-wrap items-center justify-evenly text-white sticky z-50 top-0 left-0 bg-secondary p-4 opacity-[0.8] "
-      style={{
-        // backgroundColor: bgColor,
-        fontFamily: fontFamily,
-        color: textColor,
-      }}
-    >
+    <nav className="flex flex-wrap items-center justify-evenly bg-primary dark:bg-black sticky   z-50 top-0 left-0  p-4">
       <div className="flex items-center">
         <Link to="/">
           <img src={Logo} className="w-16 mr-4" />
@@ -88,7 +74,6 @@ const NavBar = ({
             type="text"
             placeholder="Search"
             className="px-4 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-blue-500 text-black flex-1 mx-auto"
-            style={{ fontSize: fontSize }}
           />
         </form>
       </div>
@@ -140,7 +125,7 @@ const NavBar = ({
             </button>
             {option.options && (
               <div
-                className={`absolute left-0 bg-secondary text-white dark:text-white dark:bg-gray-600 shadow-lg z-10 ${
+                className={`absolute left-0  shadow-lg z-10 ${
                   activeDropdown === index ? "block" : "hidden"
                 } md:group-hover:block`}
               >
@@ -160,7 +145,7 @@ const NavBar = ({
       </div>
       <DarkModeToggle />
       <Link to="/" className="hidden md:block">
-        <img src={AnotherLogo} className="w-20 rounded-full" />
+        <img src={AnotherLogo} className="w-20 h-auto  rounded-full " />
       </Link>
     </nav>
   );
@@ -183,22 +168,7 @@ const App = () => {
     },
   ];
 
-  const bgColor = "#000";
-  const fontFamily = "inherit";
-  const fontWeight = "normal";
-  const fontSize = "16px";
-  const textColor = "#fff"; // Adding textColor prop
-
-  return (
-    <NavBar
-      options={options}
-      bgColor={bgColor}
-      fontFamily={fontFamily}
-      fontWeight={fontWeight}
-      fontSize={fontSize}
-      textColor={textColor} // Passing textColor prop
-    />
-  );
+  return <NavBar options={options} />;
 };
 
 export default App;
