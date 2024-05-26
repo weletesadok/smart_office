@@ -27,10 +27,8 @@ const RegisterForm = () => {
     setIsSubmitting(true);
     console.log(formData);
 
-    // Simulating an API call
     setTimeout(() => {
       setIsSubmitting(false);
-      // Handle form submission success/failure here
     }, 2000);
   };
 
@@ -110,7 +108,7 @@ const RegisterForm = () => {
                   className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 dark:text-white border border-red-500 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                   id="password"
                   type="password"
-                  placeholder="******************"
+                  placeholder="**************"
                   value={formData.password}
                   onChange={handleChange}
                 />
@@ -129,7 +127,7 @@ const RegisterForm = () => {
                   className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 dark:text-white border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                   id="confirmPassword"
                   type="password"
-                  placeholder="******************"
+                  placeholder="*****************"
                   value={formData.confirmPassword}
                   onChange={handleChange}
                 />

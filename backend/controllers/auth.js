@@ -13,28 +13,30 @@ exports.register = async (req, res) => {
       username: req.body.username,
       email: req.body.email,
       password: hashedPassword,
-      role: req.body.role || "Employee",
       department: req.body.department,
-      phoneNumber: req.body.phoneNumber,
-      avatar: req.fileUrls[0],
-      bio: req.body.bio,
+      phoneNumber: req.body.phoneNumber
     });
 
     const savedUser = await user.save();
     if (!savedUser)
       return res.status(400).json({ message: "error while registration" });
 
-    const accessToken = jwt.sign(
-      { ...savedUser },
-      process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "15m" }
-    );
+      const accessToken = jwt.sign(
+          {
+              "UserInfo": {
+                  "email": savedUser.email,
+                  "roles": savedUser.roles
+              }
+          },
+          process.env.ACCESS_TOKEN_SECRET,
+          { expiresIn: '15m' }
+      )
 
-    const refreshToken = jwt.sign(
-      { ...savedUser },
-      process.env.REFRESH_TOKEN_SECRET,
-      { expiresIn: "7d" }
-    );
+      const refreshToken = jwt.sign(
+          { "email": savedUser.email },
+          process.env.REFRESH_TOKEN_SECRET,
+          { expiresIn: '7d' }
+      )
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
@@ -50,70 +52,79 @@ exports.register = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-  try {
-    const { username, password } = req.body;
+  const { email, password } = req.body
 
-    const user = await User.findOne({ username });
-    if (!user) {
-      return res.status(401).json({ message: "Invalid username or password" });
-    }
+   if (!email || !password) {
+       return res.status(400).json({ message: 'All fields are required' })
+   }
 
-    const passwordMatch = await bcrypt.compare(password, user.password);
-    if (!passwordMatch) {
-      return res.status(401).json({ message: "Invalid username or password" });
-    }
+   const foundUser = await User.findOne({ email }).exec()
 
-    const accessToken = jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
-      expiresIn: "15m",
-    });
+   if (!foundUser) {
+       return res.status(401).json({ message: 'Unauthorized' })
+   }
 
-    const refreshToken = jwt.sign({ user }, process.env.REFRESH_TOKEN_SECRET, {
-      expiresIn: "7d",
-    });
+   const match = await bcrypt.compare(password, foundUser.password)
 
-    res.cookie("refreshToken", refreshToken, {
-      httpOnly: true,
-      secure: true,
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
+   if (!match) return res.status(401).json({ message: 'Unauthorized' })
 
-    res.json({ accessToken, user });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal server error" });
-  }
+   const accessToken = jwt.sign(
+       {
+           "UserInfo": {
+               "email": foundUser.email,
+               "roles": foundUser.roles
+           }
+       },
+       process.env.ACCESS_TOKEN_SECRET,
+       { expiresIn: '15m' }
+   )
+
+   const refreshToken = jwt.sign(
+       { "email": foundUser.email },
+       process.env.REFRESH_TOKEN_SECRET,
+       { expiresIn: '7d' }
+   )
+
+   res.cookie('jwt', refreshToken, {
+       httpOnly: true,
+       secure: true,
+       sameSite: 'None',
+       maxAge: 7 * 24 * 60 * 60 * 1000
+   })
+
+   res.json({ accessToken })
 };
 
 exports.refresh = async (req, res) => {
-  try {
-    const refreshToken = req.cookies.refreshToken;
-    if (!refreshToken) {
-      return res.status(403).json({ message: "Refresh token not provided" });
-    }
+  const cookies = req.cookies
 
-    jwt.verify(
-      refreshToken,
-      process.env.REFRESH_TOKEN_SECRET,
-      (err, tokenData) => {
-        if (err) {
-          return res.status(403).json({ message: "Invalid refresh token" });
-        }
+     if (!cookies?.jwt) return res.status(401).json({ message: 'Unauthorized' })
 
-        const accessToken = jwt.sign(
-          { user: tokenData.user },
-          process.env.ACCESS_TOKEN_SECRET,
-          {
-            expiresIn: "15m",
-          }
-        );
+     const refreshToken = cookies.jwt
 
-        res.json({ accessToken, user: tokenData.user });
-      }
-    );
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Internal server error" });
-  }
+     jwt.verify(
+         refreshToken,
+         process.env.REFRESH_TOKEN_SECRET,
+         async (err, decoded) => {
+             if (err) return res.status(403).json({ message: 'Forbidden' })
+
+             const foundUser = await User.findOne({ email: decoded.email }).exec()
+
+             if (!foundUser) return res.status(401).json({ message: 'Unauthorized' })
+             const accessToken = jwt.sign(
+                 {
+                     "UserInfo": {
+                         "email": foundUser.email,
+                         "roles": foundUser.roles
+                     }
+                 },
+                 process.env.ACCESS_TOKEN_SECRET,
+                 { expiresIn: '15m' }
+             )
+
+             res.json({ accessToken })
+         }
+     )
 };
 
 exports.logout = async (req, res) => {

@@ -11,11 +11,11 @@ const {
   resetPassword,
 } = require("./../controllers/auth");
 
-router.route("/register").post(uploadFiles, register);
+router.route("/register").post(register);
 
-router.route("/login").post(login);
+router.route("/").post(login);
 
-router.route("/refresh").post(refresh);
+router.route("/refresh").get(refresh);
 
 router.route("/logout").post(logout);
 

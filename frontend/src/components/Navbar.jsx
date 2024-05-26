@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
 import AnotherLogo from "../assets/logo2.svg";
 import DarkModeToggle from "./DarkMode";
+import useAuth from "./../hooks/useAuth"
 
 const DropdownMenu = ({ options }) => {
-   
+
   return (
     <div className="hidden md:flex items-center space-x-4">
       {options.map((option, index) => (
@@ -195,7 +196,7 @@ const App = () => {
     return options.filter(option => {
       if (option.name === "Admin" && !isAdmin) return false;
       if (option.name === "Head" && !isHead) return false;
-  
+
       if (option.name === "Profile") {
         if (option.options) {
           option.options = option.options.filter(subOption => {
@@ -206,7 +207,7 @@ const App = () => {
         }
         return true;
       }
-  
+
       if (option.options) {
         option.options = option.options.filter(subOption => {
           if (subOption.name === "Admin" && !isAdmin) return false;
@@ -217,9 +218,11 @@ const App = () => {
       return true;
     });
   };
-  
-  
-  const filteredOptions = filterOptions(options, false, false, false);
+
+const {isAdmin, isHead, email} = useAuth()
+const isLoggedIn = email ? true : false;
+console.log(isLoggedIn, email);
+  const filteredOptions = filterOptions(options, isAdmin, isLoggedIn, isHead);
   return <NavBar options={filteredOptions} />;
 };
 

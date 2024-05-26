@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 const Hero = () => {
   const images = [
     "https://source.unsplash.com/1600x900/?ethiopia",
-    "https://source.unsplash.com/1600x900/?lalibela",
+    "https://source.unsplash.com/1600x900/?nature",
+    "https://source.unsplash.com/1600x900/?waterfall",
+    "https://source.unsplash.com/1600x900/?wallpaper",
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

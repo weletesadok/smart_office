@@ -2,18 +2,16 @@ const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
-const rolesEnum = ["Admin", "DepartmentHead", "Employee"];
+const rolesEnum = ["Admin", "Head", "Employee"];
 
 const userSchema = new Schema(
   {
     firstName: {
       type: String,
-      required: true,
       trim: true,
     },
     lastName: {
       type: String,
-      required: true,
       trim: true,
     },
     username: {
@@ -33,18 +31,21 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    role: {
-      type: String,
-      enum: rolesEnum,
-      required: true,
-      default: "Employee",
+    roles: {
+        type: [String],
+        default: ["Employee"]
+    },
+    active: {
+        type: Boolean,
+        default: true
     },
     department: {
-      type: Schema.Types.ObjectId,
-      ref: "Department",
-      required: function () {
-        return this.role === "DepartmentHead" || this.role === "Employee";
-      },
+      type: String
+      // type: Schema.Types.ObjectId,
+      // ref: "Department",
+      // required: function () {
+      //   return this.role === "Head" || this.role === "Employee";
+      // },
     },
     phoneNumber: {
       type: String,
