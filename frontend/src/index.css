@@ -13,10 +13,14 @@ body {
 }
 
 .bg-card-container {
-  background: #f08622;
-  color: rgb(0, 0, 0);
+  background: #223547;
+  color: #ffffff;
 }
 
+.bg-card-button {
+  color: #fff;
+  background: #eeb27a;
+}
 
 .news-card {
   transition: transform 0.5s ease;
@@ -28,16 +32,15 @@ body {
 
 @keyframes drop {
   0% {
-      transform: translateY(0);
+    transform: translateY(0);
   }
   30% {
-      transform: translateY(15px);
+    transform: translateY(15px);
   }
   60% {
-      transform: translateY(-10px);
+    transform: translateY(-10px);
   }
   100% {
-      transform: translateY(0);
+    transform: translateY(0);
   }
 }
-

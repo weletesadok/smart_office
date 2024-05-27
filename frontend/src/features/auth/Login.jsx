@@ -77,18 +77,18 @@ const LoginForm = () => {
       style={{ backgroundImage: 'url("https://picsum.photos/1920/1080")' }}
     >
       <div className="h-screen flex justify-center items-center">
-        <div className="bg-white mx-4 p-8 rounded shadow-md w-full md:w-1/2 lg:w-1/3">
+        <div className="bg-white mx-4 p-8 rounded shadow-md w-full md:w-1/2 lg:w-1/3 opacity-[0.9] dark:bg-[#223547] dark:text-white">
           <h1 className="text-3xl font-bold mb-8 text-center">Login</h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label
-                className="block font-semibold text-gray-700 mb-2"
+                className="block font-semibold text-gray-700 mb-2 dark:text-white"
                 htmlFor="email"
               >
                 Email Address
               </label>
               <input
-                className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="border  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="email"
                 type="email"
                 placeholder="Enter your email address"
@@ -99,7 +99,7 @@ const LoginForm = () => {
             </div>
             <div className="mb-4">
               <label
-                className="block font-semibold text-gray-700 mb-2"
+                className="block dark:text-white font-semibold text-gray-700 mb-2"
                 htmlFor="password"
               >
                 Password
@@ -119,9 +119,12 @@ const LoginForm = () => {
               <p className="text-xs italic text-green-500">
                 {message && message}
               </p>
-              <a className="text-gray-600 hover:text-gray-800" href="#">
-                Forgot your password?
-              </a>
+              <Link
+                className="text-gray-600 dark:text-white dark:hover:text-[#ba936f] hover:text-gray-800"
+                to="/forgot"
+              >
+                Forgot your password ?
+              </Link>
             </div>
             <div className="flex gap-4 pb-4">
               <input
@@ -134,7 +137,7 @@ const LoginForm = () => {
             </div>
             <div className="mb-6">
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-blue-500 w-full dark:hover:bg-[#eeb27a] hover:bg-blue-700 text-white font-bold py-2 px-4 dark:bg-[#ba936f]  rounded focus:outline-none focus:shadow-outline"
                 type="submit"
                 disabled={isSubmitting}
               >
@@ -148,7 +151,7 @@ const LoginForm = () => {
           </form>
           <div className="text-center">
             <Link
-              className="inline-block text-sm text-blue-500 dark:text-blue-500 align-baseline hover:text-blue-800"
+              className="text-gray-600 dark:text-white dark:hover:text-[#ba936f] hover:text-gray-800"
               to="/register"
             >
               Don't have an account? Register!

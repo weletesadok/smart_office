@@ -61,16 +61,16 @@ const RegisterForm = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="flex flex-col lg:flex-row items-center bg-white dark:bg-gray-700 rounded-lg shadow-lg overflow-hidden w-full max-w-4xl">
+      <div className="flex flex-col lg:flex-row items-center bg-white dark:bg-[#223547] dark:text-white rounded-lg shadow-lg overflow-hidden w-full max-w-4xl">
         <div className="w-full lg:w-5/12 flex justify-center p-6">
           <img src={Logo} alt="Logo" className="w-full" />
         </div>
-        <div className="w-full lg:w-7/12 p-5">
-          <h3 className="py-4 text-2xl text-center text-gray-800 ">
+        <div className="w-full lg:w-7/12 p-5 rounded bg-white opacity-[0.9] dark:bg-[#223547] dark:text-white ">
+          <h3 className="py-4 text-2xl text-center ">
             Create an Account!
           </h3>
           <form
-            className="px-8 pt-6 pb-8 mb-4 bg-white dark:bg-gray-800 rounded"
+            className="px-8 pt-6 pb-8 mb-4"
             onSubmit={handleSubmit}
           >
             <div className="mb-4 md:flex md:justify-between">
@@ -206,8 +206,8 @@ const RegisterForm = () => {
             </div>
             <div className="mb-6 text-center">
               <button
-                className="w-full px-4 py-2 font-bold text-white bg-card-container rounded-full hover:bg-yellow-500 dark:bg-card-container  dark:hover:bg-yellow-500 focus:outline-none focus:shadow-outline"
-                type="submit"
+              className="bg-blue-500 w-full dark:hover:bg-[#eeb27a] hover:bg-blue-700 text-white font-bold py-2 px-4 dark:bg-[#ba936f]  rounded focus:outline-none focus:shadow-outline"
+              type="submit"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
@@ -220,7 +220,7 @@ const RegisterForm = () => {
             <hr className="mb-6 border-t" />
             <div className="text-center">
               <Link
-                className="inline-block text-sm text-blue-500 dark:text-blue-500 align-baseline hover:text-blue-800"
+              className="text-gray-600 dark:text-white dark:hover:text-[#ba936f] hover:text-gray-800"
                 to="/login"
               >
                 Already have an account? Login!

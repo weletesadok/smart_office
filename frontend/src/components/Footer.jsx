@@ -34,12 +34,12 @@ const Footer = () => {
   const filteredOptions = filterOptions(options, isAdmin, isLoggedIn, isHead);
 
   return (
-    <footer className="bg-primary dark:bg-black">
+    <footer className="dark:bg-[#223547] dark:text-white">
       <div className="container mx-auto p-0 md:p-8 xl:px-0">
         <div className="mx-auto max-w-7xl px-6 pb-10 pt-4">
           <div className="xl:grid xl:grid-cols-3 xl:gap-8">
             <div className="space-y-4">
-              <div className="max-w-md pr-16 text-md text-gray-200">
+              <div className="max-w-md pr-16 text-md">
                 Follow us on
               </div>
               <div className="flex space-x-2">
@@ -67,7 +67,7 @@ const Footer = () => {
                   <ul role="list" className="mt-6 space-y-4">
                     {filteredOptions.slice(0, 3).map((option, index) => (
                       <li key={index}>
-                        <Link to={option.link} className="text-md leading-6 text-gray-300 hover:text-gray-50">
+                        <Link to={option.link} className="text-md leading-6 text-gray-600 dark:text-white dark:hover:text-[#ba936f] hover:text-gray-800">
                           {option.name}
                         </Link>
                       </li>
@@ -78,7 +78,7 @@ const Footer = () => {
                   <ul role="list" className="mt-6 space-y-4">
                     {filteredOptions.slice(3, 6).map((option, index) => (
                       <li key={index}>
-                        <Link to={option.link} className="text-md leading-6 text-gray-300 hover:text-gray-50">
+                        <Link to={option.link} className="text-md leading-6 text-gray-600 dark:text-white dark:hover:text-[#ba936f] hover:text-gray-800">
                           {option.name}
                         </Link>
                       </li>
@@ -91,7 +91,7 @@ const Footer = () => {
                   <ul role="list" className="mt-6 space-y-4">
                     {filteredOptions.slice(6, 9).map((option, index) => (
                       <li key={index}>
-                        <Link to={option.link} className="text-md leading-6 text-gray-300 hover:text-gray-50">
+                        <Link to={option.link} className="text-md leading-6 text-gray-600 dark:text-white dark:hover:text-[#ba936f] hover:text-gray-800">
                           {option.name}
                         </Link>
                       </li>
@@ -102,7 +102,7 @@ const Footer = () => {
                   <ul role="list" className="mt-6 space-y-4">
                     {filteredOptions.slice(9).map((option, index) => (
                       <li key={index}>
-                        <Link to={option.link} className="text-md leading-6 text-gray-300 hover:text-gray-50">
+                        <Link to={option.link} className="text-md leading-6 text-gray-600 dark:text-white dark:hover:text-[#ba936f] hover:text-gray-800">
                           {option.name}
                         </Link>
                       </li>
@@ -113,9 +113,9 @@ const Footer = () => {
             </div>
           </div>
           <div className="mt-4 border-t border-gray-400/30">
-            <div className="text-md text-center text-white pt-4">
+            <div className="text-md text-center pt-4">
               Copyright © 2024
-              <span className="text-yellow-500"> Ministry Of Tourism</span>.
+              <span > Ministry Of Tourism</span>.
             </div>
           </div>
         </div>

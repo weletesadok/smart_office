@@ -64,7 +64,7 @@ const NavBar = ({ options }) => {
   };
 
   return (
-    <nav className="flex flex-wrap items-center justify-evenly bg-primary dark:bg-black sticky z-50 top-0 left-0 p-4">
+    <nav className="flex flex-wrap items-center justify-evenly opacity-[0.95] dark:bg-[#223547]  sticky z-50 top-0 left-0 p-4">
       <div className="flex items-center">
         <Link to="/">
           <img src={Logo} className="w-16 mr-4" />
@@ -105,10 +105,10 @@ const NavBar = ({ options }) => {
         {options.map((option, index) => (
           <div key={index} className="relative group">
             <button
-              className="flex items-center px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-600 focus:outline-none dark:hover:bg-gray-500"
+              className="flex items-center px-3 py-2 rounded-md text-sm font-medium focus:outline-none text-gray-600 dark:text-white"
               onClick={() => toggleDropdown(index)}
             >
-              {!option.options && <Link to={option.path}>{option.name}</Link>}
+              {!option.options && <Link className="text-gray-600 dark:text-white dark:hover:text-[#ba936f] hover:text-gray-800" to={option.path}>{option.name}</Link>}
               {option.options && (
                 <>
                   {option.name}
@@ -137,7 +137,7 @@ const NavBar = ({ options }) => {
                   <Link
                     key={subIndex}
                     to={subOption.path}
-                    className="block px-4 py-2 text-sm hover:bg-gray-500 dark:hover:bg-gray-400 hover:text-white"
+                    className="block px-4 py-2 dark:bg-[#223547] bg-white text-sm text-gray-600 dark:text-white dark:hover:text-[#ba936f] hover:text-gray-800"
                   >
                     {subOption.name}
                   </Link>

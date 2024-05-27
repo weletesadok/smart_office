@@ -38,7 +38,7 @@ const RegisterForm = () => {
         <div className="w-full lg:w-5/12 flex justify-center p-6">
           <img src={Logo} alt="Logo" className="w-full" />
         </div>
-        <div className="w-full lg:w-7/12 p-5">
+        <div className="bg-white mx-4 p-8 rounded shadow-md w-full md:w-1/2 lg:w-1/3 opacity-[0.9] dark:bg-[#223547] dark:text-white">
           <h3 className="py-4 text-2xl text-center text-gray-800 dark:text-white">
             Create an Account!
           </h3>
@@ -135,7 +135,7 @@ const RegisterForm = () => {
             </div>
             <div className="mb-6 text-center">
               <button
-                className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 dark:bg-blue-700 dark:text-white dark:hover:bg-blue-900 focus:outline-none focus:shadow-outline"
+                className="bg-blue-500 dark:hover:bg-[#eeb27a] hover:bg-blue-700 text-white font-bold py-2 px-4 dark:bg-[#ba936f]  rounded focus:outline-none focus:shadow-outline"
                 type="submit"
                 disabled={isSubmitting}
               >
@@ -150,8 +150,8 @@ const RegisterForm = () => {
 
             <div className="text-center">
               <Link
-                className="inline-block text-sm text-blue-500 dark:text-blue-500 align-baseline hover:text-blue-800"
-                to="./"
+                className="text-gray-600 dark:text-white dark:hover:text-[#ba936f] hover:text-gray-800"
+                to="/login"
               >
                 Already have an account? Login!
               </Link>
