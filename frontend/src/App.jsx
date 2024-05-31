@@ -10,20 +10,30 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Public from "./components/Public";
 import PersistLogin from "./features/auth/PersistLogin";
+import RequireAuth from "./features/auth/RequireAuth";
+import NewsDetailPage from "./features/posts/NewsDetailPage";
+import NewPost from "./features/posts/NewPost";
+import EditPost from "./features/posts/EditPost";
+import Posts from "./features/posts/Posts";
+import About3 from "./components/About";
 
 export default () => {
   return (
     <Routes>
-      <Route element={<Layout />}>
-        <Route index element={<Public />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/departments" element={<Departments />} />
-        <Route path="/places" element={<Places />} />
-        <Route path="/news" element={<News />} />
-        <Route element={<PersistLogin />}>
+      <Route element={<PersistLogin />}>
+        <Route element={<Layout />}>
+          <Route index element={<Public />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/about" element={<About3 />} />
+
+          <Route path="/register" element={<Register />} />
+          <Route path="/departments" element={<Departments />} />
+          <Route path="/places" element={<Places />} />
+          <Route path="/news" element={<Posts />} />
+          <Route path="/news/edit/:id" element={<EditPost />} />
+          <Route path="/news/:id" element={<NewsDetailPage />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/news/new" element={<NewsForm />} />
+          <Route path="/news/new" element={<NewPost />} />
           <Route path="/users" element={<UsersTable />} />
         </Route>
       </Route>

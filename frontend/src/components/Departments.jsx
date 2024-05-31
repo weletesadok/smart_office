@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 
 const DepartmentsCard = () => {
     const departments = [
@@ -69,7 +69,7 @@ const DepartmentsCard = () => {
       ];
 
     return (
-        <section className="container p-6 mx-auto space-y-3 dark:bg-gray-800 dark:text-white bg-white text-black">
+      <section className="flex flex-col justify-center max-w-6xl min-h-screen px-4 py-10 mx-auto sm:px-6 my-4 bg-white dark:bg-[#223547] dark:text-white opacity-[0.9]">
             <h4 className="text-xl font-bold md:text-3xl text-center">Departments</h4>
             <p className="text-center">Explore departments</p>
 
@@ -78,7 +78,7 @@ const DepartmentsCard = () => {
                     {departments.map((department, index) => (
                         <div key={index} className="w-full max-w-xs text-center">
                             <Link to={`/department/${department.id}`}>
-                                <div className="object-cover object-center w-full h-48 mx-auto rounded-lg dark:bg-gray-900 dark:border-gray-600 bg-gray-200 border-gray-400 border-4">
+                                <div className="object-cover object-center w-full hover:transform hover:scale-105 h-48 mx-auto rounded-lg dark:bg-gray-900  bg-gray-200 ">
                                     <div className="py-16 px-4">
                                         <h5 className="text-lg font-bold">{department.name}</h5>
                                         <p className="mt-1 font-medium">Head: {department.head}</p>

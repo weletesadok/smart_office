@@ -46,28 +46,8 @@ const UserProfileEdit = () => {
   };
 
   return (
-    <div className="bg-white border border-4 rounded-lg shadow relative m-10">
-      <div className="flex items-start justify-between p-5 border-b rounded-t">
-        <h3 className="text-xl font-semibold">Edit Form</h3>
-        <button
-          type="button"
-          className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-          data-modal-toggle="profile-modal"
-        >
-          <svg
-            className="w-5 h-5"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-              clipRule="evenodd"
-            ></path>
-          </svg>
-        </button>
-      </div>
+    <div className="bg-white dark:bg-[#223547] dark:text-white  rounded-lg shadow relative m-10">
+
 
       <div className="p-6 space-y-6">
         <form onSubmit={handleSubmit}>
@@ -103,7 +83,7 @@ const UserProfileEdit = () => {
             <div className="col-span-6 sm:col-span-3">
               <label
                 htmlFor="firstName"
-                className="text-sm font-medium text-gray-900 block mb-2"
+                className="text-sm font-medium text-gray-900 dark:text-white block mb-2"
               >
                 First Name
               </label>
@@ -113,7 +93,7 @@ const UserProfileEdit = () => {
                 id="firstName"
                 value={formData.firstName}
                 onChange={handleChange}
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                className="shadow-sm bg-gray-50 border border-gray-300 dark:bg-[#223547] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                 placeholder="John"
                 required
               />
@@ -121,7 +101,7 @@ const UserProfileEdit = () => {
             <div className="col-span-6 sm:col-span-3">
               <label
                 htmlFor="lastName"
-                className="text-sm font-medium text-gray-900 block mb-2"
+                className="text-sm font-medium text-gray-900 dark:text-white block mb-2"
               >
                 Last Name
               </label>
@@ -131,7 +111,7 @@ const UserProfileEdit = () => {
                 id="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                className="shadow-sm bg-gray-50 border border-gray-300 dark:bg-[#223547] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                 placeholder="Doe"
                 required
               />
@@ -139,7 +119,7 @@ const UserProfileEdit = () => {
             <div className="col-span-6 sm:col-span-3">
               <label
                 htmlFor="email"
-                className="text-sm font-medium text-gray-900 block mb-2"
+                className="text-sm font-medium text-gray-900 dark:text-white block mb-2"
               >
                 Email
               </label>
@@ -149,7 +129,7 @@ const UserProfileEdit = () => {
                 id="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                className="shadow-sm bg-gray-50 border border-gray-300 dark:bg-[#223547] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                 placeholder="john.doe@example.com"
                 required
               />
@@ -157,7 +137,7 @@ const UserProfileEdit = () => {
             <div className="col-span-6 sm:col-span-3">
               <label
                 htmlFor="department"
-                className="text-sm font-medium text-gray-900 block mb-2"
+                className="text-sm font-medium text-gray-900 dark:text-white block mb-2"
               >
                 Department
               </label>
@@ -166,7 +146,7 @@ const UserProfileEdit = () => {
                 id="department"
                 value={formData.department}
                 onChange={handleChange}
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                className="shadow-sm bg-gray-50 border border-gray-300 dark:bg-[#223547] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                 required
               >
                 <option value="" disabled>
@@ -180,7 +160,7 @@ const UserProfileEdit = () => {
             <div className="col-span-full">
               <label
                 htmlFor="bio"
-                className="text-sm font-medium text-gray-900 block mb-2"
+                className="text-sm font-medium text-gray-900 dark:text-white block mb-2"
               >
                 Bio
               </label>
@@ -190,14 +170,14 @@ const UserProfileEdit = () => {
                 rows="4"
                 value={formData.bio}
                 onChange={handleChange}
-                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                className="shadow-sm bg-gray-50 border border-gray-300 dark:bg-[#223547] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                 placeholder="Tell us about yourself..."
               ></textarea>
             </div>
             <div className="col-span-full">
               <label
                 htmlFor="address"
-                className="text-sm font-medium text-gray-900 block mb-2"
+                className="text-sm font-medium text-gray-900 dark:text-white block mb-2"
               >
                 Address
               </label>
@@ -207,7 +187,7 @@ const UserProfileEdit = () => {
                 id="address"
                 value={formData.address}
                 onChange={handleChange}
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                className="shadow-sm bg-gray-50 border border-gray-300 dark:bg-[#223547] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                 placeholder="123 Main St, Springfield"
                 required
               />
@@ -215,7 +195,7 @@ const UserProfileEdit = () => {
             <div className="col-span-6 sm:col-span-3">
               <label
                 htmlFor="phoneNumber"
-                className="text-sm font-medium text-gray-900 block mb-2"
+                className="text-sm font-medium text-gray-900 dark:text-white block mb-2"
               >
                 Phone Number
               </label>
@@ -225,16 +205,16 @@ const UserProfileEdit = () => {
                 id="phoneNumber"
                 value={formData.phoneNumber}
                 onChange={handleChange}
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                className="shadow-sm bg-gray-50 border border-gray-300 dark:bg-[#223547] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 w-full p-2.5"
                 placeholder="(123) 456-7890"
                 required
               />
             </div>
           </div>
-          <div className="p-6 border-t border-gray-200 rounded-b">
+          <div className="p-6 border-t border-gray-200 dark:border-gray-700 rounded-b">
             <button
               type="submit"
-              className="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              className="bg-blue-500  dark:hover:bg-[#eeb27a] hover:bg-blue-700 text-white font-bold py-2 px-4 dark:bg-[#ba936f] rounded focus:outline-none focus:shadow-outline"
             >
               {loading ? <ClipLoader color="#ffffff" size={20} /> : "Save all"}
             </button>

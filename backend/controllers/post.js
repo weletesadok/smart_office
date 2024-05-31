@@ -1,9 +1,12 @@
 const Post = require("../models/post");
+const User = require("../models/user")
 
 exports.createPost = async (req, res) => {
   try {
-    const { author, title, detail } = req.body;
+    const { email, title, detail } = req.body;
     const attachments = req.fileUrls;
+    const author = await User.findOne({email}).exec()
+    if(!author) return res.status(400).json({message: "user not found"})
     const post = new Post({
       author,
       title,

@@ -23,7 +23,7 @@ const DarkModeToggle = () => {
 
   return (
     <button onClick={toggleDarkMode} className="p-2 text-xl">
-      {isDarkMode ? <FaSun /> : <FaMoon />}
+      {isDarkMode ? <FaSun className="text-white" /> : <FaMoon />}
     </button>
   );
 };

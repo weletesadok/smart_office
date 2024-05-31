@@ -1,12 +1,12 @@
- import React, { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
 import AnotherLogo from "../assets/logo2.svg";
 import DarkModeToggle from "./DarkMode";
-import useAuth from "./../hooks/useAuth"
+import GoogleTranslate from "./GoogleTranslate"
+import useAuth from "./../hooks/useAuth";
 
 const DropdownMenu = ({ options }) => {
-
   return (
     <div className="hidden md:flex items-center space-x-4">
       {options.map((option, index) => (
@@ -64,7 +64,7 @@ const NavBar = ({ options }) => {
   };
 
   return (
-    <nav className="flex flex-wrap items-center justify-evenly opacity-[0.95] dark:bg-[#223547]  sticky z-50 top-0 left-0 p-4">
+    <nav className="flex flex-wrap items-center bg-gray-100 justify-evenly dark:opacity-[1] dark:bg-[#223547]  sticky z-50 top-0 left-0 p-4">
       <div className="flex items-center">
         <Link to="/">
           <img src={Logo} className="w-16 mr-4" />
@@ -108,7 +108,14 @@ const NavBar = ({ options }) => {
               className="flex items-center px-3 py-2 rounded-md text-sm font-medium focus:outline-none text-gray-600 dark:text-white"
               onClick={() => toggleDropdown(index)}
             >
-              {!option.options && <Link className="text-gray-600 dark:text-white dark:hover:text-[#ba936f] hover:text-gray-800" to={option.path}>{option.name}</Link>}
+              {!option.options && (
+                <Link
+                  className="text-gray-600 dark:text-white dark:hover:text-[#ba936f] hover:text-gray-800"
+                  to={option.path}
+                >
+                  {option.name}
+                </Link>
+              )}
               {option.options && (
                 <>
                   {option.name}
@@ -148,7 +155,7 @@ const NavBar = ({ options }) => {
         ))}
       </div>
       <DarkModeToggle />
-      <Link to="/" className="hidden md:block">
+      <Link to="/" className="md:block">
         <img src={AnotherLogo} className="w-20 h-auto rounded-full" />
       </Link>
     </nav>
@@ -178,9 +185,7 @@ const App = () => {
     },
     {
       name: "Admin",
-      options: [
-        { name: "Add Place", path: "/places" },
-      ],
+      options: [{ name: "Add Place", path: "/places" }],
     },
     {
       name: "Profile",
@@ -191,17 +196,30 @@ const App = () => {
         { name: "Edit Profile", path: "/profile" },
       ],
     },
+    {
+      name: "About",
+      path: "/about",
+    },
   ];
   const filterOptions = (options, isAdmin, isLoggedIn, isHead) => {
-    return options.filter(option => {
+    return options.filter((option) => {
       if (option.name === "Admin" && !isAdmin) return false;
       if (option.name === "Head" && !isHead) return false;
 
       if (option.name === "Profile") {
         if (option.options) {
-          option.options = option.options.filter(subOption => {
-            if (!isLoggedIn && (subOption.name === "Log Out" || subOption.name === "Edit Profile")) return false;
-            if (isLoggedIn && (subOption.name === "Login" || subOption.name === "Register")) return false;
+          option.options = option.options.filter((subOption) => {
+            if (
+              !isLoggedIn &&
+              (subOption.name === "Log Out" ||
+                subOption.name === "Edit Profile")
+            )
+              return false;
+            if (
+              isLoggedIn &&
+              (subOption.name === "Login" || subOption.name === "Register")
+            )
+              return false;
             return true;
           });
         }
@@ -209,7 +227,7 @@ const App = () => {
       }
 
       if (option.options) {
-        option.options = option.options.filter(subOption => {
+        option.options = option.options.filter((subOption) => {
           if (subOption.name === "Admin" && !isAdmin) return false;
           if (subOption.name === "Head" && !isHead) return false;
           return true;
@@ -219,9 +237,8 @@ const App = () => {
     });
   };
 
-const {isAdmin, isHead, email} = useAuth()
-const isLoggedIn = email ? true : false;
-console.log(isLoggedIn, email);
+  const { isAdmin, isHead, email } = useAuth();
+  const isLoggedIn = email ? true : false;
   const filteredOptions = filterOptions(options, isAdmin, isLoggedIn, isHead);
   return <NavBar options={filteredOptions} />;
 };

@@ -34,7 +34,7 @@ const Footer = () => {
   const filteredOptions = filterOptions(options, isAdmin, isLoggedIn, isHead);
 
   return (
-    <footer className="dark:bg-[#223547] dark:text-white">
+    <footer className="dark:bg-[#223547] bg-gray-200 dark:text-white  dark:opacity-[0.9]">
       <div className="container mx-auto p-0 md:p-8 xl:px-0">
         <div className="mx-auto max-w-7xl px-6 pb-10 pt-4">
           <div className="xl:grid xl:grid-cols-3 xl:gap-8">

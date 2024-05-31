@@ -2,10 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const Hero = () => {
   const images = [
-    "https://source.unsplash.com/1600x900/?ethiopia",
-    "https://source.unsplash.com/1600x900/?nature",
-    "https://source.unsplash.com/1600x900/?waterfall",
-    "https://source.unsplash.com/1600x900/?wallpaper",
+    "https://picsum.photos/1920/1080",
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

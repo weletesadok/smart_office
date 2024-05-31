@@ -74,7 +74,7 @@ const LoginForm = () => {
   return (
     <div
       className="bg-cover bg-center bg-fixed"
-      style={{ backgroundImage: 'url("https://picsum.photos/1920/1080")' }}
+      // style={{ backgroundImage: 'url("https://picsum.photos/1920/1080")' }}
     >
       <div className="h-screen flex justify-center items-center">
         <div className="bg-white mx-4 p-8 rounded shadow-md w-full md:w-1/2 lg:w-1/3 opacity-[0.9] dark:bg-[#223547] dark:text-white">

@@ -29,7 +29,10 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="bg-blue-50 dark:bg-slate-800" id="contact">
+    <section
+      className="opacity-[0.9] dark:bg-[#223547] dark:text-white bg-gray-200 border-y border-gray-400/30"
+      id="contact"
+    >
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="mb-4">
           <div className="mb-6 max-w-3xl text-center sm:text-center md:mx-auto md:mb-12">
@@ -159,7 +162,7 @@ const ContactSection = () => {
                       id="name"
                       name="name"
                       placeholder="Your name"
-                      className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md dark:text-gray-300 sm:mb-0"
+                      className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md dark:text-black sm:mb-0"
                       value={formValues.name}
                       onChange={handleChange}
                     />
@@ -174,7 +177,7 @@ const ContactSection = () => {
                       id="email"
                       name="email"
                       placeholder="Your email address"
-                      className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md dark:text-gray-300 sm:mb-0"
+                      className="border  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       value={formValues.email}
                       onChange={handleChange}
                     />
@@ -190,7 +193,7 @@ const ContactSection = () => {
                       cols="30"
                       rows="5"
                       placeholder="Write your message..."
-                      className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md dark:text-gray-300 sm:mb-0"
+                      className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md dark:text-black sm:mb-0"
                       value={formValues.message}
                       onChange={handleChange}
                     />
@@ -199,7 +202,7 @@ const ContactSection = () => {
                 <div className="text-center">
                   <button
                     type="submit"
-                    className="w-full bg-blue-800 text-white px-6 py-3 font-xl rounded-md sm:mb-0"
+                    className="bg-blue-500 w-full dark:hover:bg-[#eeb27a] hover:bg-blue-700 text-white font-bold py-2 px-4 dark:bg-[#ba936f]  rounded focus:outline-none focus:shadow-outline"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? (

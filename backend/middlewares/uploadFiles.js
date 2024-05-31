@@ -22,7 +22,7 @@ const uploadFiles = (req, res, next) => {
       return res.status(500).json({ message: "Internal server error" });
     }
 
-    req.fileUrls = req.files.map((file) => file.path);
+      req.fileUrls = req.files.map((file) => file.path);
 
     next();
   });

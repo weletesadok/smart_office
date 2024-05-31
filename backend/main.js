@@ -27,6 +27,7 @@ app.use(cookieParser());
 app.use("/auth", require("./routes/auth"));
 app.use("/users", require("./routes/user"));
 app.use("/posts", require("./routes/post"));
+app.use("/destinations", require("./routes/destination"));
 app.use("/chats", require("./routes/chat"));
 app.use("/comments", require("./routes/comment"));
 

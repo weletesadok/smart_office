@@ -60,17 +60,17 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="flex flex-col lg:flex-row items-center bg-white dark:bg-[#223547] dark:text-white rounded-lg shadow-lg overflow-hidden w-full max-w-4xl">
+    <div className="bg-cover bg-center bg-fixed flex align-center justify-center my-4">
+      <div className="flex flex-col opacity-[0.9] lg:flex-row items-center bg-white dark:bg-[#223547] dark:text-white rounded-lg shadow-lg overflow-hidden w-full max-w-4xl">
         <div className="w-full lg:w-5/12 flex justify-center p-6">
           <img src={Logo} alt="Logo" className="w-full" />
         </div>
-        <div className="w-full lg:w-7/12 p-5 rounded bg-white opacity-[0.9] dark:bg-[#223547] dark:text-white ">
+        <div className="w-full lg:w-7/12 p-5 rounded bg-white dark:bg-[#223547] dark:text-white">
           <h3 className="py-4 text-2xl text-center ">
             Create an Account!
           </h3>
           <form
-            className="px-8 pt-6 pb-8 mb-4"
+            className="px-8 pt-6 pb-4 mb-4"
             onSubmit={handleSubmit}
           >
             <div className="mb-4 md:flex md:justify-between">
