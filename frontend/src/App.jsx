@@ -20,7 +20,7 @@ import About3 from "./components/About";
 export default () => {
   return (
     <Routes>
-      <Route element={<PersistLogin />}>
+      {/* <Route element={<PersistLogin />}> */}
         <Route element={<Layout />}>
           <Route index element={<Public />} />
           <Route path="/login" element={<Login />} />
@@ -36,7 +36,7 @@ export default () => {
           <Route path="/news/new" element={<NewPost />} />
           <Route path="/users" element={<UsersTable />} />
         </Route>
-      </Route>
+      {/* </Route> */}
     </Routes>
   );
 };
