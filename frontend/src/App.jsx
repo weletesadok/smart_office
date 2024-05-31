@@ -36,7 +36,7 @@ export default () => {
           <Route path="/news/new" element={<NewPost />} />
           <Route path="/users" element={<UsersTable />} />
         </Route>
-      {/* </Route> */}
+      {/* </Route>w */}
     </Routes>
   );
 };

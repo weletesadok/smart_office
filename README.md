@@ -4,6 +4,8 @@
 
 ## 📋 Table of Contents
 
+## Note this project is under development and some features may not work.
+
 - [Introduction](#introduction)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
