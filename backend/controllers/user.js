@@ -11,14 +11,15 @@ const createUser = async (req, res) => {
       username: req.body.username,
       email: req.body.email,
       password: hashedPassword,
-      role: req.body.role || "Employee",
+      role: req.body.roles || ["Employee"],
       department: req.body.department,
-      phoneNumber: req.body.phoneNumber,
-      avatar: req.fileUrls[0],
+      avatar: req.fileUrls,
       bio: req.body.bio,
     });
 
-    const savedUser = await user.save();
+    const savedUser = await user.findByIdAndUpdate(req.body.id, user, {
+      new: true,
+    });
 
     res.status(201).json(savedUser);
   } catch (error) {
@@ -66,24 +67,19 @@ const updateUser = async (req, res) => {
     const userExist = await User.findById(userId);
     if (!userExist)
       return res.status(400).json({ message: "user doesn't exist" });
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
 
     const user = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       username: req.body.username,
       email: req.body.email,
-      password: hashedPassword,
-      role: req.body.role || "Employee",
-      department: req.body.department,
-      phoneNumber: req.body.phoneNumber,
+      roles: req.body.roles || "Employee",
       avatar: req.fileUrls[0],
       bio: req.body.bio,
     };
 
-    const updatedUser = await User.findByIdAndUpdate(userId, user, {
-      new: true,
-    });
+    const updatedUser = await User.findByIdAndUpdate(userId, user);
 
     res.status(200).json(updatedUser);
   } catch (error) {

@@ -9,10 +9,11 @@ const {
   deleteDestination,
 } = require("./../controllers/destination");
 
-router.route("/").post(uploadFiles, createDestination).get(getAllDestinations);
+router.route("/")
+  .post(uploadFiles, createDestination)
+  .get(getAllDestinations);
 
-router
-  .route("/:destinationId")
+router.route("/:destinationId")
   .put(uploadFiles, updateDestination)
   .get(getDestinationById)
   .delete(deleteDestination);

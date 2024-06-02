@@ -1,24 +1,21 @@
 const Destination = require("../models/destination");
 
-exports.createDestination = async (req, res) => {
+const createDestination = async (req, res) => {
   try {
-    const { name, region, city, district, woreda, kebele, description, attachments, bestTimeToVisit, tourismCategories } = req.body;
+    const { name, description, category, location, operatingHours, entryFee } = req.body;
+    const attachments = req.fileUrls;
 
     const destination = new Destination({
       name,
-      region,
-      city,
-      district,
-      woreda,
-      kebele,
       description,
+      category,
+      location,
+      operatingHours,
+      entryFee,
       attachments,
-      bestTimeToVisit,
-      tourismCategories,
     });
 
     await destination.save();
-
     res.status(201).json({ message: "Destination created successfully", destination });
   } catch (error) {
     console.error(error);
@@ -26,14 +23,15 @@ exports.createDestination = async (req, res) => {
   }
 };
 
-exports.updateDestination = async (req, res) => {
+const updateDestination = async (req, res) => {
   try {
     const { destinationId } = req.params;
-    const { name, region, city, district, woreda, kebele, description, attachments, bestTimeToVisit, tourismCategories } = req.body;
+    const { name, description, category, location, operatingHours, entryFee } = req.body;
+    const attachments = req.fileUrls;
 
     const destination = await Destination.findByIdAndUpdate(
       destinationId,
-      { name, region, city, district, woreda, kebele, description, attachments, bestTimeToVisit, tourismCategories },
+      { name, description, category, location, operatingHours, entryFee, attachments },
       { new: true }
     );
 
@@ -48,7 +46,7 @@ exports.updateDestination = async (req, res) => {
   }
 };
 
-exports.getDestinationById = async (req, res) => {
+const getDestinationById = async (req, res) => {
   try {
     const { destinationId } = req.params;
 
@@ -65,7 +63,7 @@ exports.getDestinationById = async (req, res) => {
   }
 };
 
-exports.getAllDestinations = async (req, res) => {
+const getAllDestinations = async (req, res) => {
   try {
     const destinations = await Destination.find();
     res.json(destinations);
@@ -75,7 +73,7 @@ exports.getAllDestinations = async (req, res) => {
   }
 };
 
-exports.deleteDestination = async (req, res) => {
+const deleteDestination = async (req, res) => {
   try {
     const { destinationId } = req.params;
 
@@ -90,4 +88,12 @@ exports.deleteDestination = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
+};
+
+module.exports = {
+  createDestination,
+  updateDestination,
+  getDestinationById,
+  getAllDestinations,
+  deleteDestination,
 };

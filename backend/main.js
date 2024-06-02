@@ -29,6 +29,7 @@ app.use("/users", require("./routes/user"));
 app.use("/posts", require("./routes/post"));
 app.use("/destinations", require("./routes/destination"));
 app.use("/chats", require("./routes/chat"));
+app.use("/feedback", require("./routes/feedback"));
 app.use("/comments", require("./routes/comment"));
 
 app.all("*", (req, res) => {

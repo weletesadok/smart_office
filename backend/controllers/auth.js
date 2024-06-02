@@ -15,7 +15,7 @@ exports.register = async (req, res) => {
       password: hashedPassword,
       department: req.body.department,
       phoneNumber: req.body.phoneNumber
-    });w
+    });
 
     const savedUser = await user.save();
     if (!savedUser)

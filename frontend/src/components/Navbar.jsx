@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
 import AnotherLogo from "../assets/logo2.svg";
 import DarkModeToggle from "./DarkMode";
-import GoogleTranslate from "./GoogleTranslate"
+import GoogleTranslate from "./GoogleTranslate";
 import useAuth from "./../hooks/useAuth";
 
 const DropdownMenu = ({ options }) => {
@@ -186,15 +186,6 @@ const App = () => {
     {
       name: "Admin",
       options: [{ name: "Add Place", path: "/places" }],
-    },
-    {
-      name: "Profile",
-      options: [
-        { name: "Login", path: "/login" },
-        { name: "Register", path: "/register" },
-        { name: "Log Out", path: "/logout" },
-        { name: "Edit Profile", path: "/profile" },
-      ],
     },
     {
       name: "About",

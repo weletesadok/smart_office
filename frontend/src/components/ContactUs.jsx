@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { ClipLoader } from "react-spinners";
+import axios from "axios";
 
 const ContactSection = () => {
   const [formValues, setFormValues] = useState({
-    name: "",
     email: "",
+    phoneNumber: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -17,34 +18,37 @@ const ContactSection = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      console.log(formValues);
+    try {
+      await axios.post("http://localhost:8000/feedback", formValues);
+      setFormValues({
+        email: "",
+        phoneNumber: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Error submitting feedback:", error);
+    } finally {
       setIsSubmitting(false);
-    }, 2000);
+    }
   };
 
   return (
-    <section
-      className="opacity-[0.9] dark:bg-[#223547] dark:text-white bg-gray-200 border-y border-gray-400/30"
-      id="contact"
-    >
+    <section className="opacity-[0.9] dark:bg-[#223547] dark:text-white bg-gray-200 border-y border-gray-400/30" id="contact">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className="mb-4">
-          <div className="mb-6 max-w-3xl text-center sm:text-center md:mx-auto md:mb-12">
-            <h2 className="font-heading mb-4 font-bold tracking-tight text-gray-900 dark:text-white text-3xl sm:text-5xl">
-              Contact Us
-            </h2>
-            <p className="mx-auto mt-4 max-w-3xl text-xl text-gray-600 dark:text-slate-400">
-              Ministry of Tourism
-            </p>
-          </div>
-        </div>
-        <div className="flex items-stretch justify-center">
+      <div className="mb-4">
+       <div className="mb-6 max-w-3xl text-center sm:text-center md:mx-auto md:mb-12">
+         <h2 className="font-heading mb-4 font-bold tracking-tight text-gray-900 dark:text-white text-3xl sm:text-5xl">
+           Contact Us
+         </h2>
+         <p className="mx-auto mt-4 max-w-3xl text-xl text-gray-600 dark:text-slate-400">
+           Ministry of Tourism
+         </p>
+       </div>
+     </div><div className="flex items-stretch justify-center">
           <div className="grid md:grid-cols-2">
             <div className="h-full pr-6">
               <p className="mt-3 mb-12 text-lg text-gray-600 dark:text-slate-400">
@@ -147,69 +151,24 @@ const ContactSection = () => {
               </ul>
             </div>
             <div className="card h-fit max-w-6xl p-5 md:p-12" id="form">
-              <h2 className="mb-4 text-2xl font-bold dark:text-white">
-                Feel free to contact us?
-              </h2>
               <form id="contactForm" onSubmit={handleSubmit}>
                 <div className="mb-6">
                   <div className="mx-0 mb-1 sm:mb-4">
-                    <label
-                      htmlFor="name"
-                      className="pb-1 text-xs uppercase tracking-wider"
-                    ></label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      placeholder="Your name"
-                      className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md dark:text-black sm:mb-0"
-                      value={formValues.name}
-                      onChange={handleChange}
-                    />
+                    <label htmlFor="email" className="pb-1 text-xs uppercase tracking-wider">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Your email" className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md dark:text-black sm:mb-0" value={formValues.email} onChange={handleChange} />
                   </div>
                   <div className="mx-0 mb-1 sm:mb-4">
-                    <label
-                      htmlFor="email"
-                      className="pb-1 text-xs uppercase tracking-wider"
-                    ></label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      placeholder="Your email address"
-                      className="border  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      value={formValues.email}
-                      onChange={handleChange}
-                    />
+                    <label htmlFor="phoneNumber" className="pb-1 text-xs uppercase tracking-wider">Phone Number:</label>
+                    <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Your phone number" className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value={formValues.phoneNumber} onChange={handleChange} />
                   </div>
                   <div className="mx-0 mb-1 sm:mb-4">
-                    <label
-                      htmlFor="textarea"
-                      className="pb-1 text-xs uppercase tracking-wider"
-                    ></label>
-                    <textarea
-                      id="textarea"
-                      name="message"
-                      cols="30"
-                      rows="5"
-                      placeholder="Write your message..."
-                      className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md dark:text-black sm:mb-0"
-                      value={formValues.message}
-                      onChange={handleChange}
-                    />
+                    <label htmlFor="message" className="pb-1 text-xs uppercase tracking-wider">Message:</label>
+                    <textarea id="message" name="message" cols="30" rows="5" placeholder="Write your message..." className="mb-2 w-full rounded-md border border-gray-400 py-2 pl-2 pr-4 shadow-md dark:text-black sm:mb-0" value={formValues.message} onChange={handleChange} />
                   </div>
                 </div>
                 <div className="text-center">
-                  <button
-                    type="submit"
-                    className="bg-blue-500 w-full dark:hover:bg-[#eeb27a] hover:bg-blue-700 text-white font-bold py-2 px-4 dark:bg-[#ba936f]  rounded focus:outline-none focus:shadow-outline"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <ClipLoader size={24} color="#fff" />
-                    ) : (
-                      "Send Message"
-                    )}
+                  <button type="submit" className="bg-blue-500 w-full dark:hover:bg-[#eeb27a] hover:bg-blue-700 text-white font-bold py-2 px-4 dark:bg-[#ba936f]  rounded focus:outline-none focus:shadow-outline" disabled={isSubmitting}>
+                    {isSubmitting ? <ClipLoader size={24} color="#fff" /> : "Send Message"}
                   </button>
                 </div>
               </form>

@@ -6,7 +6,7 @@ import { useDeletePostMutation,useGetAllPostsQuery } from "./postsApiSlice";
 
 
 const NewsSection = ({ newsData }) => {
-  const [loadingId, setLoadingId] = useState(null); // Track loading state for each news item
+  const [loadingId, setLoadingId] = useState(null);
   const [deletePost] = useDeletePostMutation();
   const {refetch } = useGetAllPostsQuery()
 
@@ -29,19 +29,19 @@ const NewsSection = ({ newsData }) => {
 
   const handleDelete = async (id) => {
     try {
-      setLoadingId(id); // Set loading state for the specific news item being deleted
+      setLoadingId(id);
       await deletePost(id);
       refetch()
     } catch (error) {
       console.log(error);
     } finally {
-      setLoadingId(null); // Reset loading state after deletion
+      setLoadingId(null);
     }
   };
 
   return (
-    <div className="w-full dark:bg-[#223547] opacity-[0.9]">
-    <section className="flex w-full flex-col bg-gray-100 justify-center max-w-6xl min-h-screen px-4 py-10 mx-auto sm:px-6  dark:bg-[#223547] dark:text-white opacity-[0.9]">
+    <div className="w-full">
+    <section className="flex w-full flex-col justify-center max-w-6xl min-h-screen px-4 py-10 mx-auto sm:px-6 ">
       <div className="flex flex-wrap items-center justify-between mb-8">
         <h2 className="mr-10 text-4xl font-bold leading-none md:text-5xl dark:text-white">
           News

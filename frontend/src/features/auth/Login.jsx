@@ -77,7 +77,7 @@ const LoginForm = () => {
       // style={{ backgroundImage: 'url("https://picsum.photos/1920/1080")' }}
     >
       <div className="h-screen flex justify-center items-center">
-        <div className="bg-white mx-4 p-8 rounded shadow-md w-full md:w-1/2 lg:w-1/3 opacity-[0.9] dark:bg-[#223547] dark:text-white">
+        <div className="bg-white mx-4 p-8 rounded shadow-md w-full md:w-1/2 lg:w-1/3  dark:bg-[#223547] dark:text-white">
           <h1 className="text-3xl font-bold mb-8 text-center">Login</h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
