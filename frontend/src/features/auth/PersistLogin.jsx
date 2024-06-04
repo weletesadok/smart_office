@@ -19,10 +19,11 @@ const PersistLogin = () => {
   useEffect(() => {
     // if (effectRan.current === true || process.env.NODE_ENV !== "development") {
     const verifyRefreshToken = async () => {
-      try {await refresh();
+      try {
+        await refresh();
         setTrueSuccess(true);
       } catch (err) {
-        console.error(err);
+        // console.error(err);
       }
     };
 
@@ -38,12 +39,7 @@ const PersistLogin = () => {
   } else if (isLoading) {
     content = <Loading />;
   } else if (isError) {
-    content = (
-      <p className="text-red-500 p-4 ">
-        {`${error?.data?.message} - `}
-        <Link to="/login">Please login again</Link>.
-      </p>
-    );
+    content = <Outlet />;
   } else if (isSuccess && trueSuccess) {
     content = <Outlet />;
   } else if (token && isUninitialized) {

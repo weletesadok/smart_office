@@ -25,26 +25,26 @@ import Chart from "./components/Organization";
 export default () => {
   return (
     <Routes>
-      {/* <Route element={<PersistLogin />}> */}
-      <Route element={<Layout />}>
-        <Route index element={<Public />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/about" element={<About3 />} />
-        <Route path="/destinations/new" element={<AddDestination />} />
-        <Route path="/destinations" element={<Destinations />} />
-        <Route path="/destinations/:id" element={<DestinationDetail />} />
-        <Route path="/destinations/edit/:id" element={<EditDestination />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/departments" element={<Departments />} />
-        <Route path="/places" element={<Destinations />} />
-        <Route path="/news" element={<Posts />} />
-        <Route path="/news/edit/:id" element={<EditPost />} />
-        <Route path="/news/:id" element={<NewsDetailPage />} />
-        <Route path="/users/edit/:id" element={<EditUser />} />
-        <Route path="/news/new" element={<NewPost />} />
-        <Route path="/users" element={<AllUsers />} />
-        <Route path="/chart" element={<Chart />} />
-        {/* </Route> */}
+      <Route element={<PersistLogin />}>
+        <Route element={<Layout />}>
+          <Route index element={<Public />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/about" element={<About3 />} />
+          <Route path="/destinations/new" element={<AddDestination />} />
+          <Route path="/destinations" element={<Destinations />} />
+          <Route path="/destinations/:id" element={<DestinationDetail />} />
+          <Route path="/destinations/edit/:id" element={<EditDestination />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/departments" element={<Departments />} />
+          <Route path="/places" element={<Destinations />} />
+          <Route path="/news" element={<Posts />} />
+          <Route path="/news/edit/:id" element={<EditPost />} />
+          <Route path="/news/:id" element={<NewsDetailPage />} />
+          <Route path="/users/edit/:id" element={<EditUser />} />
+          <Route path="/news/new" element={<NewPost />} />
+          <Route path="/users" element={<AllUsers />} />
+          <Route path="/chart" element={<Chart />} />
+        </Route>
       </Route>
     </Routes>
   );
