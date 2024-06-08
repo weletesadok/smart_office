@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useUpdateUserMutation, useGetUserQuery } from "./userApiSlice";
 import { useParams } from "react-router-dom";
+import useAuth from "./../../hooks/useAuth";
 
 const UserProfileEdit = () => {
   const { id } = useParams();
   const { data: user, isLoading: userLoading } = useGetUserQuery(id);
+  const { roles } = useAuth();
+  const assignRole = roles?.includes("Admin");
   const [updateUser] = useUpdateUserMutation();
   const [formData, setFormData] = useState({
     id,
@@ -16,7 +19,7 @@ const UserProfileEdit = () => {
     roles: ["Employee"],
     active: true,
     bio: "",
-    files: [], // Updated to handle multiple files
+    files: [],
   });
   const [loading, setLoading] = useState(false);
 
@@ -42,10 +45,9 @@ const UserProfileEdit = () => {
   };
 
   const handleImageChange = (e) => {
-    const files = Array.from(e.target.files); // Convert FileList to array
+    const files = Array.from(e.target.files);
     setFormData({ ...formData, files });
 
-    // Display the first image as a preview
     if (files.length > 0) {
       const output = document.getElementById("preview_img");
       output.src = URL.createObjectURL(files[0]);
@@ -171,27 +173,29 @@ const UserProfileEdit = () => {
               />
             </div>
 
-            <div className="col-span-6 sm:col-span-3">
-              <label
-                htmlFor="roles"
-                className="text-sm font-medium text-gray-900 dark:text-white block mb-2"
-              >
-                Role
-              </label>
-              <select
-                name="roles"
-                id="roles"
-                value={formData.roles[0]}
-                onChange={(e) =>
-                  setFormData({ ...formData, roles: [e.target.value] })
-                }
-                className="shadow-sm bg-gray-50 border border-gray-300 dark:bg-[#223547] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-              >
-                <option value="admin">Admin</option>
-                <option value="employee">Employee</option>
-                <option value="head">Department Head</option>
-              </select>
-            </div>
+            {assignRole && (
+              <div className="col-span-6 sm:col-span-3">
+                <label
+                  htmlFor="roles"
+                  className="text-sm font-medium text-gray-900 dark:text-white block mb-2"
+                >
+                  Role
+                </label>
+                <select
+                  name="roles"
+                  id="roles"
+                  value={formData.roles[0]}
+                  onChange={(e) =>
+                    setFormData({ ...formData, roles: [e.target.value] })
+                  }
+                  className="shadow-sm bg-gray-50 border border-gray-300 dark:bg-[#223547] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                >
+                  <option value="admin">Admin</option>
+                  <option value="employee">Employee</option>
+                  <option value="head">Department Head</option>
+                </select>
+              </div>
+            )}
             <div className="col-span-full">
               <label
                 htmlFor="bio"

@@ -1,5 +1,5 @@
 import { useGetAllPostsQuery } from "./postsApiSlice";
-import NewsSection from "./NewsSection"
+import NewsSection from "./NewsSection";
 
 export default () => {
   let Content = <div>Loading ...</div>;
@@ -11,7 +11,7 @@ export default () => {
     error,
   } = useGetAllPostsQuery();
   if (isSuccess) {
-    Content = <NewsSection newsData={posts}/>;
+    Content = <NewsSection newsData={posts} />;
   } else {
     Content = <div>sone thig wen twront</div>;
   }

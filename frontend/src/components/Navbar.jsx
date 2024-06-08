@@ -5,6 +5,7 @@ import AnotherLogo from "../assets/logo2.svg";
 import DarkModeToggle from "./DarkMode";
 import GoogleTranslate from "./GoogleTranslate";
 import useAuth from "./../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const DropdownMenu = ({ options }) => {
   return (
@@ -48,8 +49,25 @@ const DropdownMenu = ({ options }) => {
 };
 
 const NavBar = ({ options }) => {
+  document.documentElement.classList.add("dark");
+
+  function clearCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i];
+      var eqPos = cookie.indexOf("=");
+      var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+
+      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+    }
+
+    console.log("All cookies cleared");
+  }
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const { isAdmin, isHead, email } = useAuth();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -61,6 +79,15 @@ const NavBar = ({ options }) => {
     } else {
       setActiveDropdown(index);
     }
+  };
+  const navigate = useNavigate();
+  const loginHandler = () => {
+    navigate("/login");
+  };
+  const logoutHandler = async () => {
+    localStorage.clear();
+    clearCookies();
+    location.reload();
   };
 
   return (
@@ -154,7 +181,14 @@ const NavBar = ({ options }) => {
           </div>
         ))}
       </div>
-      <DarkModeToggle />
+      <button
+        onClick={email ? logoutHandler : loginHandler}
+        className="text-black dark:hover:text-[#ba936f]  dark:text-white"
+      >
+        {!email ? "Sign Up / Sign In" : "Log out"}
+      </button>
+      {/* <DarkModeToggle /> */}
+
       <Link to="/" className="md:block">
         <img src={AnotherLogo} className="w-20 h-auto rounded-full" />
       </Link>
@@ -169,7 +203,7 @@ const App = () => {
     {
       name: "Core",
       options: [
-        { name: "Structure", path: "/structure" },
+        { name: "Structure", path: "/chart" },
         { name: "Departments", path: "/departments" },
         { name: "Places", path: "/places" },
       ],
@@ -185,53 +219,19 @@ const App = () => {
     },
     {
       name: "Admin",
-      options: [{ name: "Add Place", path: "/places" }],
+      options: [
+        { name: "Add Place", path: "/places" },
+        { name: "Users", path: "/users" },
+      ],
     },
+
     {
       name: "About",
       path: "/about",
     },
   ];
-  const filterOptions = (options, isAdmin, isLoggedIn, isHead) => {
-    return options.filter((option) => {
-      if (option.name === "Admin" && !isAdmin) return false;
-      if (option.name === "Head" && !isHead) return false;
 
-      if (option.name === "Profile") {
-        if (option.options) {
-          option.options = option.options.filter((subOption) => {
-            if (
-              !isLoggedIn &&
-              (subOption.name === "Log Out" ||
-                subOption.name === "Edit Profile")
-            )
-              return false;
-            if (
-              isLoggedIn &&
-              (subOption.name === "Login" || subOption.name === "Register")
-            )
-              return false;
-            return true;
-          });
-        }
-        return true;
-      }
-
-      if (option.options) {
-        option.options = option.options.filter((subOption) => {
-          if (subOption.name === "Admin" && !isAdmin) return false;
-          if (subOption.name === "Head" && !isHead) return false;
-          return true;
-        });
-      }
-      return true;
-    });
-  };
-
-  const { isAdmin, isHead, email } = useAuth();
-  const isLoggedIn = email ? true : false;
-  const filteredOptions = filterOptions(options, isAdmin, isLoggedIn, isHead);
-  return <NavBar options={filteredOptions} />;
+  return <NavBar options={options} />;
 };
 
 export default App;
