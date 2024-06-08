@@ -63,6 +63,7 @@ To get a local copy up and running, follow these simple steps:
 2. Install NPM packages
    ```sh
    cd smart_office/backend
+   mkdir files
    npm install
    ```
 3. Create a `.env` file in the `backend` directory and add your environment variables

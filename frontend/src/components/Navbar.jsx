@@ -6,6 +6,8 @@ import DarkModeToggle from "./DarkMode";
 import GoogleTranslate from "./GoogleTranslate";
 import useAuth from "./../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { useGetAllDestinationsQuery } from "../features/destinations/placeSlice";
+import ResultsModal from "./SearchResult";
 
 const DropdownMenu = ({ options }) => {
   return (
@@ -49,8 +51,30 @@ const DropdownMenu = ({ options }) => {
 };
 
 const NavBar = ({ options }) => {
-  document.documentElement.classList.add("dark");
+  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  document.documentElement.classList.add("dark");
+  const [search, setSearch] = useState("");
+  const [a, setA] = useState("");
+  const [results, setResults] = useState(null);
+  const {
+    data: result,
+    isSuccess,
+    isError,
+    error,
+    isLoading,
+  } = useGetAllDestinationsQuery(a);
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setA(search);
+    setResults(result);
+    setIsModalOpen(true);
+  };
   function clearCookies() {
     var cookies = document.cookie.split(";");
 
@@ -80,7 +104,6 @@ const NavBar = ({ options }) => {
       setActiveDropdown(index);
     }
   };
-  const navigate = useNavigate();
   const loginHandler = () => {
     navigate("/login");
   };
@@ -98,8 +121,13 @@ const NavBar = ({ options }) => {
         </Link>
       </div>
       <div>
-        <form className="hidden md:flex flex-grow items-center justify-between min-w-[70%]">
+        <form
+          onSubmit={handleSubmit}
+          className="hidden md:flex flex-grow items-center justify-between min-w-[70%]"
+        >
           <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             type="text"
             placeholder="Search"
             className="px-4 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-blue-500 text-black flex-1 mx-auto"
@@ -192,6 +220,11 @@ const NavBar = ({ options }) => {
       <Link to="/" className="md:block">
         <img src={AnotherLogo} className="w-20 h-auto rounded-full" />
       </Link>
+      <ResultsModal
+        results={results}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </nav>
   );
 };
@@ -220,7 +253,7 @@ const App = () => {
     {
       name: "Admin",
       options: [
-        { name: "Add Place", path: "/places" },
+        { name: "Add Place", path: "/destinations/new" },
         { name: "Users", path: "/users" },
       ],
     },

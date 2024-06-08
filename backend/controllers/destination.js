@@ -2,7 +2,8 @@ const Destination = require("../models/destination");
 
 const createDestination = async (req, res) => {
   try {
-    const { name, description, category, location, operatingHours, entryFee } = req.body;
+    const { name, description, category, location, operatingHours, entryFee } =
+      req.body;
     const attachments = req.fileUrls;
 
     const destination = new Destination({
@@ -16,7 +17,9 @@ const createDestination = async (req, res) => {
     });
 
     await destination.save();
-    res.status(201).json({ message: "Destination created successfully", destination });
+    res
+      .status(201)
+      .json({ message: "Destination created successfully", destination });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
@@ -26,12 +29,21 @@ const createDestination = async (req, res) => {
 const updateDestination = async (req, res) => {
   try {
     const { destinationId } = req.params;
-    const { name, description, category, location, operatingHours, entryFee } = req.body;
+    const { name, description, category, location, operatingHours, entryFee } =
+      req.body;
     const attachments = req.fileUrls;
 
     const destination = await Destination.findByIdAndUpdate(
       destinationId,
-      { name, description, category, location, operatingHours, entryFee, attachments },
+      {
+        name,
+        description,
+        category,
+        location,
+        operatingHours,
+        entryFee,
+        attachments,
+      },
       { new: true }
     );
 
@@ -64,8 +76,12 @@ const getDestinationById = async (req, res) => {
 };
 
 const getAllDestinations = async (req, res) => {
+  const search = req.query.search || "";
+
   try {
-    const destinations = await Destination.find();
+    const destinations = await Destination.find({
+      name: { $regex: search, $options: "i" },
+    });
     res.json(destinations);
   } catch (error) {
     console.error(error);

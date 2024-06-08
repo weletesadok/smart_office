@@ -3,7 +3,7 @@ import { apiSlice } from "./../../app/api/apiSlice";
 const destinationsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllDestinations: builder.query({
-      query: () => "/destinations",
+      query: (search = "") => `/destinations?search=${search}`,
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
@@ -30,7 +30,7 @@ const destinationsApiSlice = apiSlice.injectEndpoints({
 
         Object.entries(post).forEach(([key, value]) => {
           if (Array.isArray(value)) {
-            value.forEach(file => formData.append(key, file));
+            value.forEach((file) => formData.append(key, file));
           } else {
             formData.append(key, value);
           }
@@ -46,9 +46,15 @@ const destinationsApiSlice = apiSlice.injectEndpoints({
         try {
           const { data } = await queryFulfilled;
           console.log(data);
-          dispatch(apiSlice.util.updateQueryData('getAllDestinations', undefined, (draft) => {
-            draft.push(data);
-          }));
+          dispatch(
+            apiSlice.util.updateQueryData(
+              "getAllDestinations",
+              undefined,
+              (draft) => {
+                draft.push(data);
+              }
+            )
+          );
         } catch (e) {
           console.log(e);
         }
@@ -60,7 +66,7 @@ const destinationsApiSlice = apiSlice.injectEndpoints({
 
         Object.entries(post).forEach(([key, value]) => {
           if (Array.isArray(value)) {
-            value.forEach(file => formData.append(key, file));
+            value.forEach((file) => formData.append(key, file));
           } else {
             formData.append(key, value);
           }
@@ -76,11 +82,23 @@ const destinationsApiSlice = apiSlice.injectEndpoints({
         try {
           const { data } = await queryFulfilled;
           console.log(data);
-          dispatch(apiSlice.util.updateQueryData('getDestinationById', arg.id, () => data));
-          dispatch(apiSlice.util.updateQueryData('getAllDestinations', undefined, (draft) => {
-            const index = draft.findIndex(post => post.id === arg.id);
-            if (index !== -1) draft[index] = data;
-          }));
+          dispatch(
+            apiSlice.util.updateQueryData(
+              "getDestinationById",
+              arg.id,
+              () => data
+            )
+          );
+          dispatch(
+            apiSlice.util.updateQueryData(
+              "getAllDestinations",
+              undefined,
+              (draft) => {
+                const index = draft.findIndex((post) => post.id === arg.id);
+                if (index !== -1) draft[index] = data;
+              }
+            )
+          );
         } catch (e) {
           console.log(e);
         }
@@ -94,9 +112,15 @@ const destinationsApiSlice = apiSlice.injectEndpoints({
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled;
-          dispatch(apiSlice.util.updateQueryData('getAllDestinations', undefined, (draft) => {
-            return draft.filter(post => post.id !== arg);
-          }));
+          dispatch(
+            apiSlice.util.updateQueryData(
+              "getAllDestinations",
+              undefined,
+              (draft) => {
+                return draft.filter((post) => post.id !== arg);
+              }
+            )
+          );
         } catch (e) {
           console.log(e);
         }
@@ -110,5 +134,5 @@ export const {
   useGetDestinationByIdQuery,
   useAddDestinationMutation,
   useUpdateDestinationMutation,
-  useDeleteDestinationMutation
+  useDeleteDestinationMutation,
 } = destinationsApiSlice;
