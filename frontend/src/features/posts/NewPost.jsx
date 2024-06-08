@@ -34,6 +34,7 @@ const NewPost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log(formData);
       await addPost(formData);
       refetch();
       if (isLoading) {
