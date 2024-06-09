@@ -16,9 +16,9 @@ const Footer = () => {
     { name: "Create Posts", link: "/posts/new" },
     { name: "Log In", link: "/login" },
     { name: "Sign Up", link: "/register" },
-    { name: "Contact us", link: "#contact" },
-    { name: "News letter", link: "#newsletter" },
-    { name: "Places", link: "/places" },
+    { name: "Contact us", link: "/" },
+    { name: "News letter", link: "/news" },
+    { name: "Places", link: "/destinations" },
   ];
 
   const filterOptions = (options, isAdmin, isLoggedIn, isHead) => {

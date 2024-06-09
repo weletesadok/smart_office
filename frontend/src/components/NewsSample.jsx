@@ -1,33 +1,33 @@
 import { Link } from "react-router-dom";
 
 const NewsSection = () => {
-  const newses = [
-    {
-      title: "Breaking News: Market Hits Record Highs",
-      content:
-        "Today, the stock market reached new record highs as investors remain optimistic about the economic recovery. The S&P 500, Dow Jones, and Nasdaq all saw significant gains, with tech and healthcare stocks leading the charge. Analysts attribute the surge to positive economic data and ongoing stimulus efforts. Many believe this trend will continue as more businesses reopen and consumer spending increases. However, some caution that the market could experience volatility as uncertainties remain. Stay tuned for more updates on this developing story.",
-    },
-    {
-      title: "Local Hero Saves Family from House Fire",
-      content:
-        "In a remarkable act of bravery, a local man rescued a family of four from a house fire late last night. Witnesses say the fire broke out around midnight, quickly engulfing the two-story home. The hero, who lives nearby, rushed into the burning building without hesitation, pulling the family to safety one by one. Firefighters arrived shortly after and managed to extinguish the blaze. The family is currently recovering in the hospital, and all are expected to make a full recovery. The community has praised the hero for his quick thinking and selflessness.",
-    },
-    {
-      title: "New Tech Innovations Unveiled at Annual Conference",
-      content:
-        "At the annual Tech Innovators Conference, several groundbreaking technologies were unveiled that promise to revolutionize various industries. Among the highlights were a new AI-powered medical diagnostic tool, a sustainable energy solution using advanced solar cells, and a cutting-edge virtual reality platform for education. Industry leaders and tech enthusiasts alike were impressed by the potential of these innovations to solve real-world problems and improve lives. The conference continues through the weekend, featuring more presentations and discussions on the future of technology.",
-    },
-    {
-      title: "City to Implement New Green Initiatives",
-      content:
-        "In an effort to combat climate change and promote sustainability, the city council has announced a series of new green initiatives. These include expanding public transportation options, increasing green spaces, and implementing stricter emissions regulations for local businesses. The council also plans to invest in renewable energy projects and promote energy efficiency in homes and buildings. These initiatives are expected to significantly reduce the city's carbon footprint and improve air quality. Residents are encouraged to participate in community workshops to learn more about how they can contribute to a greener future.",
-    },
-    {
-      title: "Sports Update: Championship Game Results",
-      content:
-        "In an exciting conclusion to the championship series, the hometown team emerged victorious, securing the title with a last-minute goal. The game was a nail-biter, with both teams playing at their best and the score remaining tight throughout. Fans were on the edge of their seats as the clock wound down, erupting in cheers when the winning goal was scored in the final seconds. The team's coach praised the players for their hard work and determination, and celebrations are planned throughout the city to honor their achievement. Stay tuned for more details on the victory parade and festivities.",
-    },
-  ];
+const newses = [
+  {
+    title: "Ethiopian Tourism: Exploring the Rich Cultural Heritage",
+    image: "https://picsum.photos/seed/picsum1/1200/720",
+    content:
+      "Ethiopia is quickly becoming a top destination for travelers seeking a unique blend of culture, history, and natural beauty. From the ancient rock-hewn churches of Lalibela to the stunning landscapes of the Simien Mountains, Ethiopia offers a diverse array of attractions. Tourists can explore the bustling markets of Addis Ababa, visit the historic city of Axum, and experience traditional Ethiopian cuisine. Efforts to boost tourism include improving infrastructure, promoting sustainable travel practices, and showcasing the country's rich cultural heritage. With its warm hospitality and myriad of attractions, Ethiopia is poised to be a standout destination in Africa.",
+  },
+  {
+    title: "Discover the Natural Wonders of Ethiopia",
+    image: "https://picsum.photos/seed/picsum2/1200/720",
+    content:
+      "Ethiopia's natural wonders are a major draw for tourists seeking adventure and breathtaking scenery. The Danakil Depression, one of the hottest places on earth, offers an otherworldly landscape with colorful sulfur springs and vast salt flats. The Simien Mountains National Park, a UNESCO World Heritage Site, is home to unique wildlife such as the Gelada baboon and the Ethiopian wolf. Visitors can also explore the Blue Nile Falls, known locally as 'Tis Issat' or 'the Smoking Water,' which is one of the most spectacular waterfalls in Africa. These natural attractions highlight Ethiopia's diverse and stunning environments.",
+  },
+  {
+    title: "Ethiopia's Cultural Festivals Attract Global Tourists",
+    image: "https://picsum.photos/seed/picsum3/1200/720",
+    content:
+      "Ethiopia's vibrant cultural festivals are attracting tourists from around the world. Timkat, the Ethiopian Orthodox celebration of Epiphany, features colorful processions, traditional music, and dancing. Meskel, the Finding of the True Cross, is another major festival marked by large bonfires and communal gatherings. The Hidar Tsion festival in Axum commemorates the presence of the Ark of the Covenant and includes pilgrimages and religious ceremonies. These festivals offer visitors a unique opportunity to experience Ethiopia's rich cultural traditions and communal spirit. They are key highlights for anyone looking to immerse themselves in the local culture.",
+  },
+  {
+    title: "Ethiopia's Coffee Tourism: From Farm to Cup",
+    image: "https://picsum.photos/seed/picsum4/1200/720",
+    content:
+      "Ethiopia, the birthplace of coffee, offers an immersive coffee tourism experience that takes visitors from farm to cup. Coffee enthusiasts can visit the lush coffee-growing regions of Sidamo, Yirgacheffe, and Harar to learn about the traditional methods of coffee cultivation and processing. Tours often include visits to local farms, coffee ceremonies, and tastings of some of the finest coffee in the world. The coffee culture in Ethiopia is deeply rooted in daily life and offers a unique insight into the social and economic fabric of the country. This form of tourism not only delights coffee lovers but also supports local farmers and communities.",
+  },
+];
+
 
   const trimContent = (content, maxLength = 150) => {
     if (content.length > maxLength) {
@@ -43,7 +43,7 @@ const NewsSection = () => {
           News
         </h2>
         <Link
-          to="/insights"
+          to="/news"
           className="block pb-1 mt-2 text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600 dark:text-blue-400 dark:hover:border-blue-400"
         >
           Go to news page
@@ -56,7 +56,7 @@ const NewsSection = () => {
             className="w-full max-w-full mb-8 sm:w-1/2 px-4 lg:w-1/3 flex flex-col news-card"
           >
             <img
-              src="https://source.unsplash.com/random/400x300"
+              src={news.image}
               alt="Card img"
               className="object-cover object-center w-full h-48"
             />
@@ -65,7 +65,7 @@ const NewsSection = () => {
               <div className="flex flex-col justify-between px-4 py-6 bg-gray-200 dark:bg-gray-800 border  border-gray-400 dark:border-gray-700 text-black dark:text-gray-300">
                 <div>
                   <Link
-                    to={`/news/${index}`}
+                    to="/news"
                     className="block mb-4 text-2xl font-black leading-tight hover:underline text-gray-600 dark:text-white dark:hover:text-[#ba936f] hover:text-gray-800"
                   >
                     {news.title}
@@ -74,7 +74,7 @@ const NewsSection = () => {
                 </div>
                 <div>
                   <Link
-                    to={`/news/${index}`}
+                    to="/news"
                     className="inline-block pb-1 mt-2 text-base font-black  uppercase border-b border-transparent hover:border-blue-600 dark:hover:border-blue-400 text-gray-600 dark:text-white dark:hover:text-[#ba936f] hover:text-gray-800"
                   >
                     Read More

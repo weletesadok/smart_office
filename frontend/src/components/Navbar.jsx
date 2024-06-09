@@ -110,11 +110,12 @@ const NavBar = ({ options }) => {
   const logoutHandler = async () => {
     localStorage.clear();
     clearCookies();
+    navigate("/");
     location.reload();
   };
 
   return (
-    <nav className="flex flex-wrap items-center bg-gray-100 justify-evenly dark:opacity-[1] dark:bg-[#223547]  sticky z-50 top-0 left-0 p-4">
+    <nav className="flex flex-wrap items-center bg-gray-100 justify-evenly dark:opacity-[1] dark:bg-[#223547]  sticky min-w-full z-50  top-0 left-0 p-4">
       <div className="flex items-center">
         <Link to="/">
           <img src={Logo} className="w-16 mr-4" />
@@ -230,9 +231,12 @@ const NavBar = ({ options }) => {
 };
 
 const App = () => {
+  const { isAdmin, isHead, email } = useAuth();
+
   const options = [
     { name: "Home", path: "/" },
     { name: "News", path: "/news" },
+    { name: "Destinations", path: "/destinations" },
     {
       name: "Core",
       options: [
@@ -241,7 +245,23 @@ const App = () => {
         { name: "Places", path: "/places" },
       ],
     },
+
     {
+      name: "About",
+      path: "/about",
+    },
+  ];
+  if (isAdmin) {
+    options.push({
+      name: "Admin",
+      options: [
+        { name: "Add Place", path: "/destinations/new" },
+        { name: "Users", path: "/users" },
+      ],
+    });
+  }
+  if (isHead) {
+    options.push({
       name: "Head",
       options: [
         { name: "Structure", path: "/structure" },
@@ -249,20 +269,8 @@ const App = () => {
         { name: "Places", path: "/places" },
         { name: "Add News", path: "/news/new" },
       ],
-    },
-    {
-      name: "Admin",
-      options: [
-        { name: "Add Place", path: "/destinations/new" },
-        { name: "Users", path: "/users" },
-      ],
-    },
-
-    {
-      name: "About",
-      path: "/about",
-    },
-  ];
+    });
+  }
 
   return <NavBar options={options} />;
 };

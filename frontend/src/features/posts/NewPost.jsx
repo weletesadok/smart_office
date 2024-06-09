@@ -59,7 +59,7 @@ const NewPost = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen text-white">
-      <div className="mx-auto w-full max-w-[450px]opacity-[0.9] bg-gray-200 dark:bg-[#223547] dark:text-white rounded-lg shadow-lg">
+      <div className="mx-auto w-full max-w-[450px] opacity-[0.9] bg-gray-200 dark:bg-[#223547] dark:text-white rounded-lg shadow-lg">
         <form className="py-4 px-6" onSubmit={handleSubmit}>
           <div className="mb-4">
             <input
