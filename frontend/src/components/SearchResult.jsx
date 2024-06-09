@@ -14,7 +14,7 @@ const ResultsModal = ({ results, isOpen, onClose }) => {
         </button>
         <h2 className="text-2xl font-bold mb-4">Search Results</h2>
         <ul>
-          {results.map((result) => (
+          {results?.map((result) => (
             <li key={result._id} className="mb-2">
               <a
                 href={`/destinations/${result._id}`}
@@ -23,7 +23,7 @@ const ResultsModal = ({ results, isOpen, onClose }) => {
                 {result.name}
               </a>
             </li>
-          ))}
+          ))}{!results && "No results Found "}
         </ul>
       </div>
     </div>
