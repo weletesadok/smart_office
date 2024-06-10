@@ -58,9 +58,9 @@ const NewDestination = () => {
           files: [],
         });
 
-        if (isSuccess) {
+        
           navigate("/destinations");
-        }
+        
       }, 2000);
     }
   };
