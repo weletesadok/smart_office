@@ -259,6 +259,7 @@ const App = () => {
       name: "Admin",
       options: [
         { name: "Add Place", path: "/destinations/new" },
+         { name: "Add News", path: "/news/new" },
         { name: "Users", path: "/users" },
       ],
     });

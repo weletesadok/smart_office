@@ -13,7 +13,7 @@ const Footer = () => {
     { name: "Employees", link: "/users" },
     { name: "Departments", link: "/departments" },
     { name: "Posts", link: "/" },
-    { name: "Create Posts", link: "/posts/new" },
+    { name: "Create Posts", link: "/news/new" },
     { name: "Log In", link: "/login" },
     { name: "Sign Up", link: "/register" },
     { name: "Contact us", link: "/contact" },
