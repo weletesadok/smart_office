@@ -122,8 +122,8 @@ const NavBar = ({ options }) => {
           <img src={Logo} className="w-16  mr-10" rounded />
         </Link>
         <Link to="/" className="flex flex-col items-start ml-4">
-          <span className="text-lg font-bold">Ministry of Tourism Intranet</span>
-          <span className="text-sm font-semibold">የቱሪዝም ሚኒስቴር ኢንተርኔት</span>
+          <span className="text-lg font-bold text-[#BA936F]">Ministry of Tourism Intranet</span>
+          <span className="text-sm font-semibold text-[#BA936F]">የቱሪዝም ሚኒስቴር</span>
         </Link>
       </div>
       <div>
@@ -259,7 +259,7 @@ const App = () => {
       name: "Admin",
       options: [
         { name: "Add Place", path: "/destinations/new" },
-         { name: "Add News", path: "/news/new" },
+        { name: "Add News", path: "/news/new" },
         { name: "Users", path: "/users" },
       ],
     });
