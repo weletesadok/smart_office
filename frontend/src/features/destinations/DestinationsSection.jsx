@@ -21,6 +21,12 @@ const DestinationsSection = ({ destinationsData }) => {
     }
     return content;
   };
+  const trimTitle = (content, maxLength = 25) => {
+    if (content.length > maxLength) {
+      return content.substring(0, maxLength) + "...";
+    }
+    return content;
+  };
 
   const extractFilename = (path) => {
     return path.split("/").pop();
@@ -46,7 +52,7 @@ const DestinationsSection = ({ destinationsData }) => {
 
   return (
     <div className="w-full">
-      <section className="flex w-full flex-col justify-center max-w-6xl min-h-screen px-4 py-10 mx-auto sm:px-6">
+      <section className="flex w-full flex-col justify-center max-w-6xl px-4 mx-auto sm:px-6">
         <div className="flex flex-wrap items-center justify-between mb-8">
           <h2 className="mr-10 text-4xl font-bold leading-none md:text-5xl dark:text-white">
             Destinations
@@ -80,7 +86,7 @@ const DestinationsSection = ({ destinationsData }) => {
                   )}
                 </>
               )}
-              {!destination.attachments.length && (
+              {!destination?.attachments?.length && (
                 <img
                   src="https://via.placeholder.com/300x200?text=No+Image"
                   alt="Placeholder"
@@ -95,7 +101,7 @@ const DestinationsSection = ({ destinationsData }) => {
                       to={`/destinations/${destination._id}`}
                       className="block mb-4 text-2xl font-black leading-tight hover:underline text-gray-600 dark:text-white dark:hover:text-[#ba936f] hover:text-gray-800"
                     >
-                      {destination.name}
+                      {trimTitle(destination.name)}
                     </Link>
                     <p className="mb-4">
                       {trimContent(destination.description)}

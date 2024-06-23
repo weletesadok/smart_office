@@ -1,15 +1,12 @@
 import { useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
-import {
-  useAddDestinationMutation,
-  useGetAllDestinationsQuery,
-} from "./placeSlice";
+import { useAddDestinationMutation, useGetAllDestinationsQuery } from "./placeSlice";
 import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const NewDestination = () => {
   const [loading, setLoading] = useState(false);
-  const [addDestination, { isLoading, isError, isSuccess, error }] =
-    useAddDestinationMutation();
+  const [addDestination, { isLoading, isError, isSuccess, error }] = useAddDestinationMutation();
   const [message, setMessage] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const navigate = useNavigate();
@@ -37,8 +34,11 @@ const NewDestination = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(formData);
-      await addDestination(formData);
+      const res = await addDestination(formData);
+      if (res.data?.destination) {
+
+        navigate("/destinations")
+      }
       refetch();
       if (isLoading) {
         setLoading(true);
@@ -58,15 +58,16 @@ const NewDestination = () => {
           files: [],
         });
 
-        
-          navigate("/destinations");
-        
+        if (isSuccess) {
+          Navigate(to = "/destinations");
+
+        }
       }, 2000);
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen text-white mt-12 ">
+    <div className="flex items-center justify-center min-h-screen text-white">
       <div className="mx-auto w-full max-w-[450px] opacity-[0.9] bg-gray-200 dark:bg-[#223547] dark:text-white rounded-lg shadow-lg">
         <form className="py-4 px-6" onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -104,9 +105,7 @@ const NewDestination = () => {
               className="w-full rounded-md border border-gray-700 bg-gray-700 py-2 px-4 text-base font-medium text-gray-200 outline-none focus:border-blue-500 focus:shadow-md"
               required
             >
-              <option value="" disabled>
-                Select category
-              </option>
+              <option value="" disabled>Select category</option>
               <option value="Historical">Historical</option>
               <option value="Natural">Natural</option>
               <option value="Cultural">Cultural</option>
@@ -114,6 +113,9 @@ const NewDestination = () => {
               <option value="Other">Other</option>
             </select>
           </div>
+
+
+
 
           <div className="mb-4">
             <input
@@ -167,6 +169,7 @@ const NewDestination = () => {
               </label>
             </div>
 
+
             {formData.files.length > 0 && (
               <div className="mb-4">
                 {formData.files.map((file, index) => (
@@ -219,14 +222,11 @@ const NewDestination = () => {
               type="submit"
               className="hover:shadow-md w-full rounded-md bg-blue-600 py-3 px-8 text-center text-lg font-semibold text-white outline-none"
             >
-              {loading ? (
-                <ClipLoader color="#ffffff" size={20} />
-              ) : (
-                "Create Destination"
-              )}
+              {loading ? <ClipLoader color="#ffffff" size={20} /> : "Create Destination"}
             </button>
           </div>
         </form>
+
       </div>
     </div>
   );

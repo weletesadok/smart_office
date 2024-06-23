@@ -7,11 +7,13 @@ const destinationsApiSlice = apiSlice.injectEndpoints({
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          console.log(data);
         } catch (e) {
           console.log(e);
         }
       },
+    }),
+    search: builder.query({
+      query: (search = "") => `/destinations/search?search=${search}`,
     }),
     getDestinationById: builder.query({
       query: (id) => `/destinations/${id}`,
@@ -131,6 +133,7 @@ const destinationsApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useGetAllDestinationsQuery,
+  useSearchQuery,
   useGetDestinationByIdQuery,
   useAddDestinationMutation,
   useUpdateDestinationMutation,

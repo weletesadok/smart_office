@@ -5,9 +5,11 @@ const User = require("../models/user");
 const createComment = async (req, res) => {
   try {
     const { post, author, content } = req.body;
+    console.log(author)
 
     const postExists = await Post.findById(post);
-    const userExists = await User.findById(author);
+    const userExists = await User.findOne({ email: author }).exec()
+
 
     if (!postExists) {
       return res.status(400).json({ message: "Post not found" });
@@ -19,7 +21,7 @@ const createComment = async (req, res) => {
 
     const newComment = new Comment({
       post,
-      author,
+      author: userExists._id,
       content,
     });
 
@@ -95,6 +97,23 @@ const deleteComment = async (req, res) => {
     res.status(500).json({ message: "Error deleting comment", error });
   }
 };
+const getCommentByPost = async (req, res) => {
+  try {
+    const { postId } = req.params;
+
+    const comment = await Comment.find({ post: postId })
+      .populate("post")
+      .populate("author");
+
+    if (!comment) {
+      return res.status(404).json({ message: "Comment not found" });
+    }
+
+    res.status(200).json(comment);
+  } catch (error) {
+    res.status(500).json({ message: "Error retrieving comment", error });
+  }
+}
 
 module.exports = {
   createComment,
@@ -102,4 +121,5 @@ module.exports = {
   getCommentById,
   getAllComments,
   deleteComment,
+  getCommentByPost
 };

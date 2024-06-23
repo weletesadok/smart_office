@@ -5,15 +5,16 @@ const {
   updateComment,
   getCommentById,
   getAllComments,
+  getCommentByPost,
   deleteComment,
 } = require("./../controllers/comment");
 
 router.route("/").post(createComment).get(getAllComments);
+router.route("/:postId").get(getCommentByPost)
 
 router
   .route("/:commentId")
   .put(updateComment)
-  .get(getCommentById)
   .delete(deleteComment);
 
 module.exports = router;

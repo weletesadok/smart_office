@@ -1,5 +1,7 @@
 import { useGetAllDestinationsQuery } from "./placeSlice";
 import DestinationsSection from "./DestinationsSection";
+import Loading from "../../components/SkeletonLoading"
+
 
 export default () => {
   const {
@@ -10,10 +12,11 @@ export default () => {
     error,
   } = useGetAllDestinationsQuery();
 
+
   let Content;
 
   if (isLoading) {
-    Content = <div>Loading ...</div>;
+    Content = <Loading />;
   } else if (isSuccess) {
     Content = <DestinationsSection destinationsData={posts} />;
   } else if (isError) {

@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from "react";
+import img1 from "../assets/photo_2024-06-16_11-52-36.jpg";
+import img2 from "../assets/photo_2024-06-16_11-52-40.jpg";
+import img3 from "../assets/photo_2024-06-16_11-52-42.jpg";
+import img4 from "../assets/photo_2024-06-16_11-52-47.jpg";
+import img5 from "../assets/photo_2024-06-16_11-52-49.jpg";
+// import img6 from "../assets/photo_2024-06-16_11-52-51.jpg";
+import img7 from "../assets/photo_2024-06-16_11-52-54.jpg";
+import img8 from "../assets/photo_2024-06-16_11-52-59.jpg";
+// import img9 from "../assets/photo_2024-06-16_11-53-01.jpg";
+
 
 const Hero = () => {
-  const images = [
-    "https://picsum.photos/1920/1080",
-  ];
+  const images = [img1, img2, img3, img4, img5,img7, img8];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 

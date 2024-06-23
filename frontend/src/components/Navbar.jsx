@@ -6,8 +6,9 @@ import DarkModeToggle from "./DarkMode";
 import GoogleTranslate from "./GoogleTranslate";
 import useAuth from "./../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import { useGetAllDestinationsQuery } from "../features/destinations/placeSlice";
+import { useSearchQuery } from "../features/destinations/placeSlice";
 import ResultsModal from "./SearchResult";
+import { Button } from 'flowbite-react'
 
 const DropdownMenu = ({ options }) => {
   return (
@@ -54,7 +55,7 @@ const NavBar = ({ options }) => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  document.documentElement.classList.add("dark");
+
   const [search, setSearch] = useState("");
   const [a, setA] = useState("");
   const [results, setResults] = useState(null);
@@ -64,7 +65,7 @@ const NavBar = ({ options }) => {
     isError,
     error,
     isLoading,
-  } = useGetAllDestinationsQuery(a);
+  } = useSearchQuery(a);
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
@@ -86,7 +87,7 @@ const NavBar = ({ options }) => {
       document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
     }
 
-    console.log("All cookies cleared");
+
   }
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -115,10 +116,14 @@ const NavBar = ({ options }) => {
   };
 
   return (
-    <nav className="flex flex-wrap items-center bg-gray-100 justify-evenly dark:opacity-[1] dark:bg-[#223547]  sticky min-w-full z-50  top-0 left-0 p-4">
-      <div className="flex items-center">
-        <Link to="/">
-          <img src={Logo} className="w-16 mr-4" />
+    <nav className="flex flex-wrap items-center bg-[#223547] opacity-[1] text-white justify-evenly dark:opacity-[1] dark:bg-[#223547]  sticky min-w-full z-50  top-0 left-0 p-4">
+      <div className="flex items-center" >
+        <Link to="/" className="rounded-full">
+          <img src={Logo} className="w-16  mr-10" rounded />
+        </Link>
+        <Link to="/" className="flex flex-col items-start ml-4">
+          <span className="text-lg font-bold">Ministry of Tourism Intranet</span>
+          <span className="text-sm font-semibold">የቱሪዝም ሚኒስቴር ኢንተርኔት</span>
         </Link>
       </div>
       <div>
@@ -154,19 +159,18 @@ const NavBar = ({ options }) => {
         </button>
       </div>
       <div
-        className={`toggle w-full md:w-auto md:flex text-right text-bold mt-5 md:mt-0 border-t-2 border-blue-900 md:border-none ${
-          isMenuOpen ? "block" : "hidden"
-        }`}
+        className={`toggle w-full md:w-auto md:flex text-right text-bold mt-5 md:mt-0 border-t-2 border-blue-900 md:border-none ${isMenuOpen ? "block" : "hidden"
+          }`}
       >
         {options.map((option, index) => (
           <div key={index} className="relative group">
             <button
-              className="flex items-center px-3 py-2 rounded-md text-sm font-medium focus:outline-none text-gray-600 dark:text-white"
+              className="flex items-center px-3 py-2 rounded-md text-sm font-medium focus:outline-none text-white dark:text-white"
               onClick={() => toggleDropdown(index)}
             >
               {!option.options && (
                 <Link
-                  className="text-gray-600 dark:text-white dark:hover:text-[#ba936f] hover:text-gray-800"
+                  className="text-white dark:text-white dark:hover:text-[#ba936f] hover:text-gray-800"
                   to={option.path}
                 >
                   {option.name}
@@ -192,9 +196,8 @@ const NavBar = ({ options }) => {
             </button>
             {option.options && (
               <div
-                className={`absolute left-0 shadow-lg z-10 ${
-                  activeDropdown === index ? "block" : "hidden"
-                } md:group-hover:block`}
+                className={`absolute left-0 shadow-lg z-10 ${activeDropdown === index ? "block" : "hidden"
+                  } md:group-hover:block`}
               >
                 {option.options.map((subOption, subIndex) => (
                   <Link
@@ -210,13 +213,13 @@ const NavBar = ({ options }) => {
           </div>
         ))}
       </div>
-      <button
+      <Button
         onClick={email ? logoutHandler : loginHandler}
-        className="text-black dark:hover:text-[#ba936f]  dark:text-white"
+        gradientDuoTone='purpleToPink' outline h-8 w-12
       >
-        {!email ? "Sign Up / Sign In" : "Log out"}
-      </button>
-      {/* <DarkModeToggle /> */}
+        {!email ? "Sign In" : "Log out"}
+      </Button>
+      <DarkModeToggle />
 
       <Link to="/" className="md:block">
         <img src={AnotherLogo} className="w-20 h-auto rounded-full" />

@@ -2,6 +2,7 @@ import React from "react";
 
 const ResultsModal = ({ results, isOpen, onClose }) => {
   if (!isOpen) return null;
+  console.log(results)
 
   return (
     <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
@@ -12,18 +13,27 @@ const ResultsModal = ({ results, isOpen, onClose }) => {
         >
           &times;
         </button>
-        <h2 className="text-2xl font-bold mb-4">Search Results</h2>
+        <h2 className="text-2xl font-bold mb-4 text-black">Search Results</h2>
+        <p className="text-black">
+          {results.length === 0 && "No results Found"}
+
+        </p>
         <ul>
           {results?.map((result) => (
             <li key={result._id} className="mb-2">
               <a
-                href={`/destinations/${result._id}`}
+                href={result.title ? `/news/${result._id}` : `/destinations/${result._id}`}
                 className="text-blue-500 hover:text-blue-700"
               >
+                {result.title}
                 {result.name}
               </a>
+
             </li>
-          ))}{!results && "No results Found "}
+
+
+
+          ))}
         </ul>
       </div>
     </div>

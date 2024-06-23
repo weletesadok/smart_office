@@ -14,7 +14,7 @@ export default () => {
       }}
     >
     <div className="bg-green-500">
-    <Navbar />
+    {/* <Navbar /> */}
 
     </div>
       <Outlet />

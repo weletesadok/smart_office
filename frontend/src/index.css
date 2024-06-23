@@ -2,93 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: 'Gill Sans', 'Noto Sans Ethiopic', sans-serif;
 }
 
-.lightmode {
-  background: #C6FFDD;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to left, #f7797d, #FBD786, #C6FFDD);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #f7797d, #FBD786, #C6FFDD); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-opacity: 0.9;
+.font-light {
+  font-weight: 300;
 }
 
-@keyframes drop {
-  0% {
-    transform: translateY(0);
-  }
-  30% {
-    transform: translateY(15px);
-  }
-  60% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
+.font-regular {
+  font-weight: 400;
 }
 
-.mega-menu {
-    display: none;
-    left: 0;
-    position: absolute;
-    text-align: left;
-    width: 100%;
-  }
+.font-semibold {
+  font-weight: 600;
+}
 
-
-
-  /* #hoverable Class Styles
-  –––––––––––––––––––––––––––––––––––––––––––––––––– */
-  .hoverable {
-    position: static;
-  }
-
-  .hoverable > a:after {
-    content: "\25BC";
-    font-size: 10px;
-    padding-left: 6px;
-    position: relative;
-    top: -1px;
-  }
-
-  .hoverable:hover .mega-menu {
-    display: block;
-  }
-
-
-  /* #toggle Class Styles
-  –––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-  .toggleable > label:after {
-    content: "\25BC";
-    font-size: 10px;
-    padding-left: 6px;
-    position: relative;
-    top: -1px;
-  }
-
-  .toggle-input {
-    display: none;
-  }
-  .toggle-input:not(checked) ~ .mega-menu {
-    display: none;
-  }
-
-  .toggle-input:checked ~ .mega-menu {
-    display: block;
-  }
-
-  .toggle-input:checked + label {
-    color: white;
-    background: #2c5282; /*@apply bg-blue-800 */
-  }
-
-  .toggle-input:checked ~ label:after {
-    content: "\25B2";
-    font-size: 10px;
-    padding-left: 6px;
-    position: relative;
-    top: -1px;
-  }
+.font-bold {
+  font-weight: 700;
+}

@@ -1,8 +1,9 @@
 import { useGetAllPostsQuery } from "./postsApiSlice";
 import NewsSection from "./NewsSection";
+import Loading from "../../components/SkeletonLoading"
 
 export default () => {
-  let Content = <div>Loading ...</div>;
+  let Content = <Loading />;
   const {
     data: posts,
     isLoading,

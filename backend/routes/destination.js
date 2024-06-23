@@ -7,11 +7,13 @@ const {
   getDestinationById,
   getAllDestinations,
   deleteDestination,
+  searchCustom
 } = require("./../controllers/destination");
 
 router.route("/")
   .post(uploadFiles, createDestination)
   .get(getAllDestinations);
+router.route("/search").get(searchCustom)
 
 router.route("/:destinationId")
   .put(uploadFiles, updateDestination)

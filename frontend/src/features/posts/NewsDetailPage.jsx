@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useGetPostQuery } from './postsApiSlice';
 import { Link } from 'react-router-dom';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-
+import Discussion from '../comments/Comments';
 const NewsDetailPage = () => {
   const { id } = useParams();
   const { data: news, error, isLoading } = useGetPostQuery(id);
@@ -76,6 +76,7 @@ const NewsDetailPage = () => {
           )}
         </div>
       </div>
+      <Discussion postId={id} />
     </div>
   );
 };

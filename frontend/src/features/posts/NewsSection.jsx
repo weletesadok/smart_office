@@ -10,7 +10,7 @@ const NewsSection = ({ newsData }) => {
   const [deletePost] = useDeletePostMutation();
   const { refetch } = useGetAllPostsQuery();
   const { roles } = useAuth();
-  const canEdit = roles?.includes("Admin");
+  const canEdit = roles?.includes("Admin") || roles?.includes("Head");
 
   const trimContent = (content, maxLength = 150) => {
     if (content.length > maxLength) {
@@ -19,6 +19,12 @@ const NewsSection = ({ newsData }) => {
     return content;
   };
 
+  const trimTitle = (content, maxLength = 25) => {
+    if (content.length > maxLength) {
+      return content.substring(0, maxLength) + "...";
+    }
+    return content;
+  };
   const extractFilename = (path) => {
     return path.split("/").pop();
   };
@@ -43,7 +49,7 @@ const NewsSection = ({ newsData }) => {
 
   return (
     <div className="w-full">
-      <section className="flex w-full flex-col justify-center max-w-6xl min-h-screen px-4 py-10 mx-auto sm:px-6 ">
+      <section className="flex w-full flex-col justify-center max-w-6xl py-8 px-4 mx-auto sm:px-6 ">
         <div className="flex flex-wrap items-center justify-between mb-8">
           <h2 className="mr-10 text-4xl font-bold leading-none md:text-5xl dark:text-white">
             News
@@ -94,7 +100,7 @@ const NewsSection = ({ newsData }) => {
                       to={`/news/${news._id}`}
                       className="block mb-4 text-2xl font-black leading-tight hover:underline text-gray-600 dark:text-white dark:hover:text-[#ba936f] hover:text-gray-800"
                     >
-                      {news.title}
+                      {trimTitle(news.title)}
                     </Link>
                     <p className="mb-4 ">{trimContent(news.detail)}</p>
                   </div>

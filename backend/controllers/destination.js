@@ -1,4 +1,5 @@
 const Destination = require("../models/destination");
+const Post = require("../models/post")
 
 const createDestination = async (req, res) => {
   try {
@@ -106,10 +107,30 @@ const deleteDestination = async (req, res) => {
   }
 };
 
+const searchCustom = async (req, res) => {
+  const search = req.query.search || "";
+
+  try {
+    const destinations = await Destination.find({
+      name: { $regex: search, $options: "i" },
+    });
+    const posts = await Post.find({
+      title: { $regex: search, $options: "i" },
+    })
+    const data = posts.concat(destinations)
+    console.log(posts)
+    res.json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 module.exports = {
   createDestination,
   updateDestination,
   getDestinationById,
   getAllDestinations,
   deleteDestination,
+  searchCustom
 };

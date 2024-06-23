@@ -1,8 +1,9 @@
 import { useGetAllPostsQuery } from "../features/posts/postsApiSlice";
 import NewsSection from "../features/posts/NewsSection";
+import Loading from "../components/SkeletonLoading"
 
 export default () => {
-  let Content = <div>Loading ...</div>;
+  let Content = <Loading />;
   let slicedPosts;
   const {
     data: posts,
@@ -12,13 +13,15 @@ export default () => {
     error,
   } = useGetAllPostsQuery();
   if (isSuccess) {
-  if(posts.length > 3){
-  
-  slicedPosts = posts.slice(0, 3)}else {
-  slicedPosts = posts}
+    if (posts.length > 3) {
+
+      slicedPosts = posts.slice(0, 3)
+    } else {
+      slicedPosts = posts
+    }
     Content = <NewsSection newsData={slicedPosts} />;
   } else {
-    Content = <div>sone thig wen twront</div>;
+    Content = <div>sonmethig went wrong</div>;
   }
   return Content;
 };
