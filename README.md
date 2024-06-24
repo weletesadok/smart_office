@@ -4,7 +4,7 @@
 
 ## 📋 Table of Contents
 
-## Note this project is under development and some features may not work.
+## Note this is version one stay tuned for latest updates and fixes.
 
 - [Introduction](#introduction)
 - [Features](#features)
