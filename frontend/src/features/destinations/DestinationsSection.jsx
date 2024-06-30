@@ -141,6 +141,15 @@ const DestinationsSection = ({ destinationsData }) => {
                       )}
                     </div>
                   </div>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                                    <time
+                                        pubdate="true"
+                                        dateTime={destination.createdAt}
+                                        title={new Date(destination.createdAt).toLocaleDateString()}
+                                    >
+                                        {new Date(destination.createdAt).toLocaleDateString()}
+                                    </time>
+                                </p>
                 </div>
               </div>
             </div>

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
 import AnotherLogo from "../assets/logo2.svg";
 import DarkModeToggle from "./DarkMode";
-import GoogleTranslate from "./GoogleTranslate";
 import useAuth from "./../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { useSearchQuery } from "../features/destinations/placeSlice";
@@ -261,6 +260,7 @@ const App = () => {
         { name: "Add Place", path: "/destinations/new" },
         { name: "Add News", path: "/news/new" },
         { name: "Users", path: "/users" },
+        { name: "User feedbacks", path: "/feedback" },
       ],
     });
   }

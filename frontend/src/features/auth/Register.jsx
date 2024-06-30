@@ -12,7 +12,7 @@ const RegisterForm = () => {
     username: "",
     phoneNumber: "",
     password: "",
-    department: "",
+    department: "Employee",
   });
 
   const [message, setMessage] = useState("");
@@ -140,40 +140,7 @@ const RegisterForm = () => {
                 required
               />
             </div>
-            <div className="mb-4">
-              <label className="sr-only" htmlFor="department">
-                Department
-              </label>
-              <select
-                className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 dark:text-black border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                id="department"
-                value={formData.department}
-                onChange={handleChange}
-                required
-              >
-                <option value="" className="text-gray-700 dark:text-black">
-                  Select Department
-                </option>
-                <option value="IT" className="text-gray-700 dark:text-black">
-                  IT
-                </option>
-                <option value="Other" className="text-gray-700 dark:text-black">
-                  Other
-                </option>
-                <option
-                  value="Employee"
-                  className="text-gray-700 dark:text-black"
-                >
-                  Employee
-                </option>
-                <option
-                  value="Minister"
-                  className="text-gray-700 dark:text-black"
-                >
-                  Minister
-                </option>
-              </select>
-            </div>
+            
             <div className="mb-4">
               <label className="sr-only" htmlFor="password">
                 Password

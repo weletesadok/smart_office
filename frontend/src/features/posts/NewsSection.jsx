@@ -138,6 +138,15 @@ const NewsSection = ({ newsData }) => {
                       )}
                     </div>
                   </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                                    <time
+                                        pubdate="true"
+                                        dateTime={news.createdAt}
+                                        title={new Date(news.createdAt).toLocaleDateString()}
+                                    >
+                                        {new Date(news.createdAt).toLocaleDateString()}
+                                    </time>
+                                </p>
                 </div>
               </div>
             </div>

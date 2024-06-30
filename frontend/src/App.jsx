@@ -23,6 +23,7 @@ import DestinationDetail from "./features/destinations/DestinationDetail";
 import About3 from "./components/About";
 import Chart from "./components/Organization";
 import Contact from "./components/ContactUs"
+import Feedback from "./features/feedback/Feedbacks"
 
 export default () => {
   return (
@@ -39,15 +40,18 @@ export default () => {
             <Route path="/destinations" element={<Destinations />} />
             <Route path="/destinations/:id" element={<DestinationDetail />} />
             <Route element={<RequireAuth allowedRoles={["Admin", "Head"]} />}>
-              <Route path="/users" element={<AllUsers />} />
               <Route path="/destinations/new" element={<AddDestination />} />
               <Route path="/news/edit/:id" element={<EditPost />} />
-              <Route path="/users/edit/:id" element={<EditUser />} />
+              <Route path="/feedback" element={<Feedback />} />
               <Route path="/news/new" element={<NewPost />} />
               <Route
                 path="/destinations/edit/:id"
                 element={<EditDestination />}
               />
+            </Route>
+            <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
+              <Route path="/users" element={<AllUsers />} />
+              <Route path="/users/edit/:id" element={<EditUser />} />             
             </Route>
             <Route path="/register" element={<Register />} />
             <Route path="/departments" element={<Departments />} />
